@@ -385,7 +385,15 @@
       min-height: 100%;
     }
 
-    .studio-logo { max-height: 30px; margin-bottom: 16px; }
+    .studio-logo {
+      display: block;
+      height: 30px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      align-self: flex-start;
+      margin-bottom: 16px;
+    }
 
     .studio-body {
       flex: 1 1 auto;
