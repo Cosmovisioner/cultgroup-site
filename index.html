@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Cult Group — холдинг технологичных продакшнов. Cult, Blaster, Sputnik."/>
-  <title>Cult Group — холдинг технологичных продакшнов</title>
+  <meta name="description" content="Cult Group — объединение технологичных продакшнов. Cult, Blaster, Sputnik. Любой контент в одном окне."/>
+  <title>Cult Group — объединение технологичных продакшнов</title>
   <style>
     @font-face {
       font-family: "Unbounded";
@@ -370,29 +370,83 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(24px, 4vw, 64px);
+      align-items: stretch;
     }
 
     .studio-col {
+      display: flex;
+      flex-direction: column;
       padding-left: 24px;
       border-left: 3px solid var(--accent);
+      min-height: 100%;
     }
 
     .studio-logo { max-height: 30px; margin-bottom: 16px; }
 
     .studio-body {
+      flex: 1 1 auto;
       font-size: 15px;
       line-height: 1.55;
       color: rgba(17,17,17,0.72);
       text-wrap: pretty;
+      margin: 0 0 24px;
     }
 
     .studio-body strong { color: var(--ink); }
 
-    .studio-links {
+    .studio-col .btn {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* ─── POWERS ─── */
+    .powers-h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 48px);
+      letter-spacing: -0.03em;
+      margin: 0 0 20px;
+    }
+
+    .powers-rule {
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent) 0%, rgba(249, 116, 190, 0.12) 45%, rgba(17, 17, 17, 0.08) 100%);
+      margin-bottom: 40px;
+    }
+
+    .powers-stack {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 32px;
+      gap: clamp(24px, 4vw, 48px);
+    }
+
+    .power-row {
+      padding-left: 20px;
+      border-left: 2px solid rgba(17, 17, 17, 0.1);
+    }
+
+    .power-num {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: rgba(17, 17, 17, 0.4);
+      margin: 0 0 12px;
+    }
+
+    .power-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(20px, 2.2vw, 26px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+
+    .power-text {
+      font-size: 15px;
+      line-height: 1.55;
+      color: rgba(17, 17, 17, 0.72);
+      margin: 0;
+      text-wrap: pretty;
     }
 
     /* ─── WORK GRID ─── */
@@ -770,6 +824,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       padding: 20px 0;
       border-bottom: 1px solid rgba(17,17,17,0.1);
       text-decoration: none;
@@ -780,10 +835,25 @@
     .contact-row:first-of-type { border-top: 1px solid rgba(17,17,17,0.1); }
     .contact-row:hover { color: var(--accent); }
 
+    .contact-main {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      min-width: 0;
+    }
+
+    .contact-dim {
+      font-size: clamp(13px, 1.4vw, 16px);
+      color: rgba(17, 17, 17, 0.4);
+      font-weight: 400;
+    }
+
     .contact-mark {
       font-size: 13px;
       color: rgba(17,17,17,0.35);
       letter-spacing: 0.1em;
+      flex-shrink: 0;
     }
 
     .contact-tg {
@@ -812,7 +882,7 @@
 
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
-      .studios-grid, .studio-links { grid-template-columns: 1fr; }
+      .studios-grid, .powers-stack { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -835,6 +905,7 @@
     <nav class="nav" aria-label="Навигация">
       <a href="#about">О группе</a>
       <a href="#studios">Студии</a>
+      <a href="#powers">Суперсила</a>
       <a href="#work">Работы</a>
       <a href="#contact">Контакты</a>
     </nav>
@@ -849,8 +920,8 @@
         </div>
         <div>
           <p class="hero-kicker">Production · 2026</p>
-          <h1 class="hero-h1">Холдинг<br/>технологичных продакшнов</h1>
-          <p class="hero-lead">С нами работа над любым контентом эффективнее. Cult, Blaster и Sputnik — в одном месте.</p>
+          <h1 class="hero-h1">Объединение<br/>технологичных продакшнов</h1>
+          <p class="hero-lead">Делаем работу над контентом эффективной. Cult, Blaster и Sputnik — в одном месте.</p>
           <div class="hero-actions">
             <a class="btn btn--accent" href="#work">Смотреть работы</a>
             <a class="btn" href="#about">О группе</a>
@@ -863,14 +934,13 @@
       <div class="inner">
         <div class="about-wrap">
           <div class="about-watermark" aria-hidden="true">/</div>
-          <h2 class="about-h1">Cult Group — холдинг<br/>технологичных продакшнов</h2>
+          <h2 class="about-h1">Cult Group — объединение<br/>технологичных продакшнов.</h2>
           <div class="about-rule"></div>
           <div class="about-body">
-            <p class="about-lead">С нами работа над любым контентом эффективнее.</p>
+            <p class="about-lead">Делаем работу над контентом эффективной.</p>
             <p class="about-text">
-              Мы применяем AI и технологии в управлении проектами.<br/>
-              Это позволяет нам уменьшать расходы на производство,<br/>
-              быть гибче и действовать быстрее на каждом этапе.
+              Мы применяем AI и технологии в производстве и управлении проектами.<br/>
+              С нами вы уменьшаете расходы на продакшн, а результат получаете быстрее.
             </p>
           </div>
         </div>
@@ -889,42 +959,66 @@
             <img class="studio-logo" src="_assets/cult_logo.png" alt="Cult"/>
             <p class="studio-body">
               <strong>Cult</strong> — <strong>гибридный рекламный продакшн</strong>:<br/>
-              от масштабных ТВ-роликов<br/>
-              и съёмок&nbsp;в других странах<br/>
-              до сложных ИИ-проектов,<br/>
-              от фото-кампейнов<br/>
-              до имиджевых&nbsp;видео.
+              от масштабных ТВ-роликов и съёмок в других странах до сложных ИИ-проектов,<br/>
+              от фото-кампейнов до имиджевых видео.
             </p>
+            <a class="btn" href="https://cult.team" target="_blank" rel="noopener">cult.team →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/blaster_logo.png" alt="Blaster"/>
             <p class="studio-body">
               <strong>Blaster</strong> — <strong>студия компьютерной графики</strong>,<br/>
-              ИИ-роликов, анимации<br/>
-              и мультипликации.<br/>
-              Их суперсила — совмещение<br/>
-              качественного артдирекшна<br/>
-              и современных&nbsp;технологий.
+              ИИ-роликов, анимации и мультипликации.<br/>
+              Их суперсила — совмещение качественного артдирекшна и современных технологий.
             </p>
+            <a class="btn" href="https://blasterstudio.ru" target="_blank" rel="noopener">blasterstudio.ru →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/sputnik_logo_ink.png" alt="Sputnik"/>
             <p class="studio-body">
-              <strong>Sputnik</strong> — <strong>продакшн документального кино</strong>,<br/>
-              спецпроектов и брендированного<br/>
+              <strong>Sputnik</strong> — <strong>продакшн документального кино</strong>, спецпроектов и брендированного
               контента.<br/>
-              Их фильмы выходят в широкий<br/>
-              кинопрокат и собирают награды<br/>
-              на фестивалях, а проекты<br/>
-              для брендов собирают<br/>
-              миллионы&nbsp;просмотров.
+              Их фильмы выходят в широкий кинопрокат и собирают награды на фестивалях,
+              а проекты для брендов собирают миллионы просмотров.
             </p>
+            <a class="btn" href="https://sputnikfilms.ru" target="_blank" rel="noopener">sputnikfilms.ru →</a>
           </div>
         </div>
-        <div class="studio-links">
-          <a class="btn" href="https://cult.team" target="_blank" rel="noopener">cult.team →</a>
-          <a class="btn" href="https://blasterstudio.ru" target="_blank" rel="noopener">blasterstudio.ru →</a>
-          <a class="btn" href="https://sputnikfilms.ru" target="_blank" rel="noopener">sputnikfilms.ru →</a>
+      </div>
+    </section>
+
+    <section class="section" id="powers">
+      <div class="inner">
+        <h2 class="powers-h1">Наша суперсила</h2>
+        <div class="powers-rule"></div>
+        <div class="powers-stack">
+          <div class="power-row">
+            <p class="power-num">01</p>
+            <h3 class="power-title">AI-native<br/>команда</h3>
+            <p class="power-text">
+              Каждый сотрудник использует нейросети.
+              Это ускоряет производство и позволяет команде
+              уделять больше внимания сервису, а не&nbsp;рутине.
+            </p>
+          </div>
+          <div class="power-row">
+            <p class="power-num">02</p>
+            <h3 class="power-title">Собственные<br/>сервисы</h3>
+            <p class="power-text">
+              Наши внутренние IT-продукты для управления проектами
+              гарантируют дополнительную надежность и сокращают&nbsp;ошибки.
+              Их используют креативная индустрия, другие продакшены и&nbsp;агентства.
+            </p>
+          </div>
+          <div class="power-row">
+            <p class="power-num">03</p>
+            <h3 class="power-title">Штатные<br/>ИИ-специалисты</h3>
+            <p class="power-text">
+              В каждой студии работают опытные AI-дженералисты.
+              Мы всегда знаем, где сэкономить бюджет с помощью&nbsp;ИИ,
+              а где нужны классические инструменты.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -1224,16 +1318,17 @@
 
     <section class="section contact" id="contact">
       <div class="inner">
-        <h2 class="contact-h1">Давайте снимать!</h2>
-        <p class="contact-sub">Дмитрий Квашнин · коммерческий директор Cult Group</p>
+        <h2 class="contact-h1">Любой контент в одном окне!</h2>
+        <p class="contact-sub">Леонид Мархашов · New business manager</p>
         <div class="contact-list">
-          <a class="contact-row" href="tel:+79136898769"><span>+7 913 689 87 69</span><span class="contact-mark">01</span></a>
-          <a class="contact-row" href="https://cult.team" target="_blank" rel="noopener"><span>cult.team</span><span class="contact-mark">02</span></a>
-          <a class="contact-row" href="https://t.me/cosmovisioner" target="_blank" rel="noopener"><span>@cosmovisioner</span><span class="contact-mark">03</span></a>
+          <a class="contact-row" href="mailto:leo@cult.team"><span class="contact-main"><span>leo@cult.team</span></span><span class="contact-mark">01</span></a>
+          <a class="contact-row" href="https://cult.team" target="_blank" rel="noopener"><span class="contact-main"><span>cult.team</span><span class="contact-dim">Cult</span></span><span class="contact-mark">02</span></a>
+          <a class="contact-row" href="https://blasterstudio.ru" target="_blank" rel="noopener"><span class="contact-main"><span>blasterstudio.ru</span><span class="contact-dim">Blaster</span></span><span class="contact-mark">03</span></a>
+          <a class="contact-row" href="https://sputnikfilms.ru" target="_blank" rel="noopener"><span class="contact-main"><span>sputnikfilms.ru</span><span class="contact-dim">Sputnik Films</span></span><span class="contact-mark">04</span></a>
         </div>
-        <a class="contact-tg" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">
+        <a class="contact-tg" href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">
           <img src="_assets/contacts_telegram.png" alt="Telegram"/>
-          <span>Написать в Telegram</span>
+          <span>@leo_markhaschov</span>
         </a>
       </div>
     </section>
