@@ -138,7 +138,7 @@
 
     .hero-meta p {
       font-size: 22px;
-      line-height: 1;
+      line-height: 1.15;
       letter-spacing: -1.56px;
       text-transform: uppercase;
       white-space: nowrap;
@@ -149,17 +149,17 @@
       width: var(--content);
       font-weight: 300;
       font-size: 20px;
-      line-height: 1;
+      line-height: 1.4;
     }
 
-    .invite p + p { margin-top: 1em; }
+    .invite p + p { margin-top: 1.05em; }
 
     .invite .hl {
       background: var(--accent);
       color: var(--ink);
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
-      padding: 1px 4px;
+      padding: 2px 4px;
     }
 
     .panel {
@@ -204,7 +204,7 @@
       font-size: 20px;
       letter-spacing: -1.4px;
       text-transform: uppercase;
-      line-height: 1.2;
+      line-height: 1.35;
     }
 
     .section-stack {
@@ -212,31 +212,39 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 30px;
+      gap: 24px;
     }
 
     .dress {
       width: var(--content);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 16px;
       font-size: 20px;
       letter-spacing: -1.4px;
-      line-height: 1.25;
+      line-height: 1.45;
+      text-align: center;
     }
 
     .dress__title {
-      text-align: center;
       text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .dress__text {
+      max-width: 338px;
+      line-height: 1.45;
     }
 
     /* Infinite peek carousel */
     .carousel {
       width: 100%;
       max-width: var(--page);
-      height: 430px;
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
       touch-action: pan-y;
       user-select: none;
       -webkit-user-select: none;
@@ -245,24 +253,27 @@
 
     .carousel.is-dragging { cursor: grabbing; }
 
+    .carousel__stage {
+      position: relative;
+      width: 100%;
+      height: 430px;
+      overflow: hidden;
+    }
+
     .carousel__viewport {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .carousel__slide {
       position: absolute;
-      width: 267px;
-      height: 361px;
       top: 50%;
       left: 50%;
-      margin-top: -180.5px;
-      margin-left: -133.5px;
+      width: 267px;
+      height: 361px;
       overflow: hidden;
       background: #2a2a2a;
+      transform: translate(-50%, -50%);
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
       will-change: transform, opacity;
       pointer-events: none;
@@ -279,23 +290,20 @@
     .carousel__slide.is-center {
       width: 304px;
       height: 411px;
-      margin-top: -205.5px;
-      margin-left: -152px;
       z-index: 3;
     }
 
     .carousel__hint {
-      position: absolute;
-      bottom: 6px;
-      left: 0;
-      right: 0;
+      position: static;
+      margin: 0;
       text-align: center;
-      font-size: 11px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(21, 21, 21, 0.45);
+      color: var(--ink);
+      opacity: 0.55;
+      line-height: 1.2;
       pointer-events: none;
-      z-index: 4;
     }
 
     .map-panel { width: var(--content); }
@@ -454,15 +462,17 @@
           aria-roledescription="карусель"
           aria-label="Фото места"
         >
-          <div class="carousel__viewport"></div>
-          <div class="carousel__hint">свайп ← →</div>
+          <div class="carousel__stage">
+            <div class="carousel__viewport"></div>
+          </div>
+          <p class="carousel__hint">свайп ← →</p>
         </div>
       </section>
 
       <section class="section-stack" aria-label="Дресс-код">
         <div class="dress">
           <p class="dress__title">Дресс-код — его нет</p>
-          <p>Приходи в чём-то нарядном, главное — оставайся собой!</p>
+          <p class="dress__text">Приходи в чём-то нарядном, главное — оставайся собой!</p>
         </div>
         <div
           class="carousel"
@@ -472,8 +482,10 @@
           aria-roledescription="карусель"
           aria-label="Атмосфера вечера"
         >
-          <div class="carousel__viewport"></div>
-          <div class="carousel__hint">свайп ← →</div>
+          <div class="carousel__stage">
+            <div class="carousel__viewport"></div>
+          </div>
+          <p class="carousel__hint">свайп ← →</p>
         </div>
       </section>
 
@@ -581,7 +593,9 @@
             }
 
             const x = baseX + (offset === 0 ? dragX : dragX * 0.35);
-            slide.style.transform = `translate3d(${x}px, 0, 0) rotate(${rot}deg) scale(${scale})`;
+            // Центр всех слайдов общий (−50%, −50%), сдвиг только по X
+            slide.style.transform =
+              `translate(calc(-50% + ${x}px), -50%) rotate(${rot}deg) scale(${scale})`;
             slide.style.opacity = String(opacity);
             slide.style.zIndex = offset === 0 ? "3" : "1";
           });
