@@ -45,9 +45,9 @@
 
     /*
       Фон как в Figma (node 30:107):
-      #b5b5b5 + texture mix-blend-screen + texture mix-blend-hard-light @ 10%.
-      isolation на .page-bg — бленды только внутри фона, не съедают лого/текст.
-      repeat — текстура по всей высоте скролла.
+      #b5b5b5 + screen + hard-light @ 10%.
+      cover (как object-cover в макете) — без швов от repeat.
+      isolation — бленды не трогают контент.
     */
     .page-bg {
       position: fixed;
@@ -61,8 +61,8 @@
     .page-bg__screen {
       position: absolute;
       inset: 0;
-      background-image: url("assets/bg_figma_screen.jpg");
-      background-size: 780px auto;
+      background-image: url("assets/bg_figma_screen_seamless.jpg");
+      background-size: 520px 520px;
       background-repeat: repeat;
       mix-blend-mode: screen;
     }
@@ -70,8 +70,8 @@
     .page-bg__hard {
       position: absolute;
       inset: 0;
-      background-image: url("assets/bg_figma_hard.jpg");
-      background-size: 720px auto;
+      background-image: url("assets/bg_figma_hard_seamless.jpg");
+      background-size: 520px 520px;
       background-repeat: repeat;
       mix-blend-mode: hard-light;
       opacity: 0.1;
@@ -316,15 +316,49 @@
     }
 
     .carousel__hint {
-      position: static;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       margin: 0;
-      text-align: center;
       font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink);
-      opacity: 0.55;
       line-height: 1.2;
+      user-select: none;
+    }
+
+    .carousel__nav {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid rgba(21, 21, 21, 0.35);
+      background: rgba(255, 255, 255, 0.35);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1;
+      width: 36px;
+      height: 32px;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .carousel__nav:hover {
+      background: var(--accent);
+      border-color: var(--ink);
+    }
+
+    .carousel__nav:active {
+      transform: translateY(1px);
+    }
+
+    .carousel__hint-label {
+      opacity: 0.55;
       pointer-events: none;
     }
 
@@ -486,7 +520,11 @@
           <div class="carousel__stage">
             <div class="carousel__viewport"></div>
           </div>
-          <p class="carousel__hint">свайп ← →</p>
+          <div class="carousel__hint">
+            <button type="button" class="carousel__nav" data-dir="-1" aria-label="Предыдущее фото">←</button>
+            <span class="carousel__hint-label">свайп</span>
+            <button type="button" class="carousel__nav" data-dir="1" aria-label="Следующее фото">→</button>
+          </div>
         </div>
       </section>
 
@@ -506,7 +544,11 @@
           <div class="carousel__stage">
             <div class="carousel__viewport"></div>
           </div>
-          <p class="carousel__hint">свайп ← →</p>
+          <div class="carousel__hint">
+            <button type="button" class="carousel__nav" data-dir="-1" aria-label="Предыдущее фото">←</button>
+            <span class="carousel__hint-label">свайп</span>
+            <button type="button" class="carousel__nav" data-dir="1" aria-label="Следующее фото">→</button>
+          </div>
         </div>
       </section>
 
@@ -644,6 +686,26 @@
           window.setTimeout(() => { locked = false; }, 360);
         }
 
+        root.querySelectorAll(".carousel__nav").forEach((btn) => {
+          btn.addEventListener("pointerdown", (e) => e.stopPropagation());
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            go(Number(btn.getAttribute("data-dir")));
+          });
+        });
+
+        const label = root.querySelector(".carousel__hint-label");
+        if (label) {
+          label.style.pointerEvents = "auto";
+          label.style.cursor = "pointer";
+          label.title = "Следующее фото";
+          label.addEventListener("click", (e) => {
+            e.preventDefault();
+            go(1);
+          });
+        }
+
         function onPointerDown(clientX) {
           if (locked) return;
           dragging = true;
@@ -672,36 +734,39 @@
           }
         }
 
-        root.addEventListener("touchstart", (e) => {
+        const stage = root.querySelector(".carousel__stage") || root;
+
+        stage.addEventListener("touchstart", (e) => {
           if (e.touches.length !== 1) return;
           onPointerDown(e.touches[0].clientX);
         }, { passive: true });
 
-        root.addEventListener("touchmove", (e) => {
+        stage.addEventListener("touchmove", (e) => {
           if (!dragging || e.touches.length !== 1) return;
           onPointerMove(e.touches[0].clientX);
         }, { passive: true });
 
-        root.addEventListener("touchend", onPointerUp);
-        root.addEventListener("touchcancel", onPointerUp);
+        stage.addEventListener("touchend", onPointerUp);
+        stage.addEventListener("touchcancel", onPointerUp);
 
-        root.addEventListener("pointerdown", (e) => {
+        stage.addEventListener("pointerdown", (e) => {
           if (e.pointerType === "touch") return;
-          root.setPointerCapture(e.pointerId);
+          if (e.target.closest(".carousel__nav")) return;
+          stage.setPointerCapture(e.pointerId);
           onPointerDown(e.clientX);
         });
 
-        root.addEventListener("pointermove", (e) => {
+        stage.addEventListener("pointermove", (e) => {
           if (e.pointerType === "touch") return;
           onPointerMove(e.clientX);
         });
 
-        root.addEventListener("pointerup", (e) => {
+        stage.addEventListener("pointerup", (e) => {
           if (e.pointerType === "touch") return;
           onPointerUp();
         });
 
-        root.addEventListener("pointercancel", onPointerUp);
+        stage.addEventListener("pointercancel", onPointerUp);
 
         paint(false);
       }
