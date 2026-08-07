@@ -90,18 +90,28 @@
     .page {
       width: min(100%, var(--page));
       min-height: 100dvh;
-      padding: 29px 0 48px;
+      /* сверху ≈ как от лого до первой фотки */
+      padding: 36px 0 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 50px;
     }
 
+    .logo-link {
+      display: block;
+      flex-shrink: 0;
+      line-height: 0;
+      text-decoration: none;
+      /* опустить лого: равные поля сверху и до фото (~36px) */
+      margin-top: 4px;
+      margin-bottom: -14px;
+    }
+
     .logo {
       width: 190px;
       height: auto;
       display: block;
-      flex-shrink: 0;
     }
 
     .hero-block {
@@ -123,14 +133,14 @@
       flex-shrink: 0;
     }
 
-    /* Лёгкий нахлёст: видны все 3 строки, края чуть под фото */
+    /* Лёгкий нахлёст — текст не прячется под фото */
     .hero-photo--top {
-      margin-bottom: -16px;
+      margin-bottom: -6px;
     }
 
     .hero-photo--bottom {
       object-position: bottom;
-      margin-top: -16px;
+      margin-top: -6px;
     }
 
     .hero-meta {
@@ -140,14 +150,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 10px 0;
-      min-height: 78px;
+      gap: 2px;
+      padding: 2px 0;
     }
 
     .hero-meta p {
       font-size: 22px;
-      line-height: 1.2;
+      line-height: 1.05;
       letter-spacing: -1.56px;
       text-transform: uppercase;
       white-space: nowrap;
@@ -163,6 +172,13 @@
     }
 
     .invite p + p { margin-top: 1.05em; }
+
+    .invite a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
 
     .invite .hl {
       background: var(--accent);
@@ -363,12 +379,19 @@
       pointer-events: none;
     }
 
-    .map-panel { width: var(--content); }
+    .map-panel {
+      width: var(--content);
+      border: 1px solid var(--ink);
+      box-sizing: border-box;
+    }
+
+    .map-panel .panel__head {
+      border-bottom: 1px solid var(--ink);
+    }
 
     .map-body {
-      border: 1px solid var(--ink);
-      border-top: none;
-      padding: 10px;
+      border: none;
+      padding: 20px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -418,8 +441,10 @@
       position: absolute;
       left: 60.7%;
       top: 35%;
-      width: 18px;
+      width: 15.6px;
       height: 18px;
+      object-fit: contain;
+      object-position: center;
       pointer-events: none;
     }
 
@@ -475,7 +500,9 @@
   </div>
   <div class="shell">
     <main class="page">
-      <img class="logo" src="assets/logo_pink.png" width="190" height="95" alt="Cult Group"/>
+      <a class="logo-link" href="https://cultgroup.ru/" target="_blank" rel="noopener">
+        <img class="logo" src="assets/logo_pink.png" width="190" height="95" alt="Cult Group"/>
+      </a>
 
       <section class="hero-block" aria-label="Анонс">
         <img class="hero-photo hero-photo--top" src="assets/hero_dj.jpg" alt="DJ-сет"/>
@@ -489,7 +516,7 @@
 
       <section class="invite" aria-label="Приглашение">
         <p>Привет, коллега!</p>
-        <p>Мы запускаем группу продакшнов Cult Group и зовем тебя на наш первый день рождения.</p>
+        <p>Мы запускаем группу продакшнов <a href="https://cultgroup.ru/" target="_blank" rel="noopener">Cult Group</a> и зовем тебя на наш первый день рождения.</p>
         <p>План простой: это уютный <span class="hl">вечер без галстуков!</span></p>
         <p>Не хотим превращать наше мероприятие в очередную задачу в твоем календаре.</p>
       </section>
