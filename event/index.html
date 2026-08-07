@@ -43,43 +43,43 @@
       overflow-x: hidden;
     }
 
-    /* Texture repeats for full scroll height */
+    /* Texture — как в Figma: серый + screen + hard-light grain */
     .page-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background-color: var(--bg-base);
-      background-image:
-        url("assets/bg_texture.jpg"),
-        url("assets/bg_grain.jpg");
-      background-size: 520px auto, 360px auto;
-      background-repeat: repeat, repeat;
-      background-position: 0 0, 40px 20px;
-      mix-blend-mode: normal;
+      background-color: #b5b5b5;
     }
 
-    .page-bg::after {
-      content: "";
+    .page-bg__tex {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/bg_texture_strong.jpg");
+      background-size: 320px auto;
+      background-repeat: repeat;
+      mix-blend-mode: screen;
+      opacity: 1;
+    }
+
+    .page-bg__grain {
       position: absolute;
       inset: 0;
       background-image: url("assets/bg_grain.jpg");
-      background-size: 360px auto;
+      background-size: 240px auto;
       background-repeat: repeat;
-      opacity: 0.1;
       mix-blend-mode: hard-light;
-      pointer-events: none;
+      opacity: 0.22;
     }
 
-    .page-bg::before {
-      content: "";
+    .page-bg__noise {
       position: absolute;
       inset: 0;
-      background-image: url("assets/bg_texture.jpg");
-      background-size: 520px auto;
+      background-image: url("assets/bg_texture_strong.jpg");
+      background-size: 180px auto;
       background-repeat: repeat;
-      mix-blend-mode: screen;
-      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.35;
     }
 
     .shell {
@@ -110,11 +110,13 @@
 
     .hero-block {
       width: var(--content);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
       text-align: center;
+      /* Figma: фото наезжают на мета-текст */
+      padding: 0;
     }
 
     .hero-photo {
@@ -122,18 +124,27 @@
       height: 216px;
       object-fit: cover;
       display: block;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-photo--top {
+      margin-bottom: -34px;
     }
 
     .hero-photo--bottom {
       object-position: bottom;
+      margin-top: -34px;
     }
 
     .hero-meta {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      padding: 14px 0 12px;
+      gap: 6px;
+      padding: 8px 0;
     }
 
     .hero-meta p {
@@ -200,11 +211,17 @@
 
     .section-title {
       width: var(--content);
+      box-sizing: border-box;
       text-align: center;
       font-size: 20px;
+      font-weight: 400;
       letter-spacing: -1.4px;
       text-transform: uppercase;
       line-height: 1.35;
+      padding: 10px 12px;
+      background: var(--accent);
+      border: 1px solid var(--ink);
+      color: var(--ink);
     }
 
     .section-stack {
@@ -228,8 +245,15 @@
     }
 
     .dress__title {
+      width: 100%;
+      box-sizing: border-box;
       text-transform: uppercase;
       line-height: 1.35;
+      padding: 10px 12px;
+      background: var(--accent);
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-weight: 400;
     }
 
     .dress__text {
@@ -415,14 +439,18 @@
   </style>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
+  <div class="page-bg" aria-hidden="true">
+    <div class="page-bg__tex"></div>
+    <div class="page-bg__grain"></div>
+    <div class="page-bg__noise"></div>
+  </div>
 
   <div class="shell">
     <main class="page">
       <div class="logo" role="img" aria-label="Cult Group"></div>
 
       <section class="hero-block" aria-label="Анонс">
-        <img class="hero-photo" src="assets/hero_dj.jpg" alt="DJ-сет"/>
+        <img class="hero-photo hero-photo--top" src="assets/hero_dj.jpg" alt="DJ-сет"/>
         <div class="hero-meta">
           <p>21.08 | 19:00</p>
           <p>cult group Birthday Party</p>
@@ -480,7 +508,7 @@
           data-carousel="vibe"
           role="region"
           aria-roledescription="карусель"
-          aria-label="Атмосфера вечера"
+          aria-label="Дресс-код / образы"
         >
           <div class="carousel__stage">
             <div class="carousel__viewport"></div>
@@ -528,9 +556,16 @@
       ];
 
       const VIBE_PHOTOS = [
-        "assets/vibe_1.jpg",
-        "assets/vibe_2.jpg",
-        "assets/vibe_3.jpg",
+        "assets/dress_1.jpg",
+        "assets/dress_2.jpg",
+        "assets/dress_3.jpg",
+        "assets/dress_4.jpg",
+        "assets/dress_5.jpg",
+        "assets/dress_6.jpg",
+        "assets/dress_7.jpg",
+        "assets/dress_8.jpg",
+        "assets/dress_9.jpg",
+        "assets/dress_10.jpg",
       ];
 
       const CAROUSELS = {
