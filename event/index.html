@@ -45,9 +45,8 @@
 
     /*
       Фон как в Figma (node 30:107):
-      #b5b5b5 + screen + hard-light @ 10%.
-      cover (как object-cover в макете) — без швов от repeat.
-      isolation — бленды не трогают контент.
+      #b5b5b5 + screen + hard-light @ 10%, object-cover на весь экран.
+      cover + no-repeat — без швов тайлинга (фото ткани не seamless).
     */
     .page-bg {
       position: fixed;
@@ -61,18 +60,20 @@
     .page-bg__screen {
       position: absolute;
       inset: 0;
-      background-image: url("assets/bg_figma_screen_seamless.jpg");
-      background-size: 520px 520px;
-      background-repeat: repeat;
+      background-image: url("assets/bg_figma_screen.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       mix-blend-mode: screen;
     }
 
     .page-bg__hard {
       position: absolute;
       inset: 0;
-      background-image: url("assets/bg_figma_hard_seamless.jpg");
-      background-size: 520px 520px;
-      background-repeat: repeat;
+      background-image: url("assets/bg_figma_hard.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       mix-blend-mode: hard-light;
       opacity: 0.1;
     }
