@@ -491,35 +491,43 @@
       text-underline-offset: 2px;
     }
 
+    /* Арт-дир: 3 равные колонки, единый оптический слот, h÷2, opacity 50% */
     .studios-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: center;
-      justify-content: center;
-      gap: 28px;
-      width: 100%;
-      padding-top: 8px;
+      justify-items: center;
+      column-gap: 20px;
+      width: min(100%, 300px);
+      padding-top: 12px;
     }
 
     .studios-row a {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: 24px; /* равная ячейка сетки */
       text-decoration: none;
-      opacity: 0.9;
-      transition: opacity 0.15s, transform 0.15s;
+      opacity: 0.5;
+      transition: opacity 0.15s;
     }
 
     .studios-row a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
+      opacity: 0.75;
     }
 
     .studios-row img {
-      height: 22px;
+      height: 11px; /* было 22 → ×0.5 */
       width: auto;
-      max-width: 88px;
+      max-width: 100%;
       object-fit: contain;
       display: block;
+    }
+
+    /* Cult wordmark плотнее — чуть меньше для оптического паритета (как case-logo--cult) */
+    .studios-row img[alt="Cult"] {
+      height: 9.5px;
     }
 
     @media (min-width: 430px) {
