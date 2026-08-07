@@ -83,15 +83,102 @@
       z-index: 1;
       width: 100%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       isolation: isolate;
+    }
+
+    /* Меню с главной — компакт для 390px */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: min(100%, var(--page));
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 12px 14px 10px;
+      background: rgba(181, 181, 181, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(21, 21, 21, 0.08);
+    }
+
+    .site-header__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .site-header .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .site-header .brand img {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 12px;
+    }
+
+    .nav a {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(21, 21, 21, 0.55);
+      transition: color 0.15s;
+    }
+
+    .nav a:hover,
+    .nav a.is-active {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn--accent {
+      background: var(--accent);
+      border-color: var(--ink);
+    }
+
+    .btn--accent:hover {
+      background: var(--ink);
+      color: #fff;
     }
 
     .page {
       width: min(100%, var(--page));
       min-height: 100dvh;
-      /* сверху ≈ как от лого до первой фотки */
-      padding: 36px 0 48px;
+      padding: 28px 0 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -174,10 +261,12 @@
     .invite p + p { margin-top: 1.05em; }
 
     .invite a {
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--accent);
+      padding: 1px 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
     }
 
     .invite .hl {
@@ -469,6 +558,10 @@
       font-size: 20px;
       letter-spacing: -1.4px;
       text-transform: uppercase;
+      background: var(--accent);
+      color: var(--ink);
+      padding: 8px 14px;
+      line-height: 1.2;
     }
 
     .footer__contact {
@@ -486,6 +579,37 @@
       text-underline-offset: 2px;
     }
 
+    .studios-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      width: 100%;
+      padding-top: 8px;
+    }
+
+    .studios-row a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .studios-row a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .studios-row img {
+      height: 22px;
+      width: auto;
+      max-width: 88px;
+      object-fit: contain;
+      display: block;
+    }
+
     @media (min-width: 430px) {
       .page {
         box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
@@ -499,6 +623,23 @@
     <div class="page-bg__hard"></div>
   </div>
   <div class="shell">
+    <header class="site-header">
+      <div class="site-header__row">
+        <a class="brand" href="https://cultgroup.ru/" aria-label="Cult Group — на главную">
+          <img src="assets/logo_pink.png" alt="Cult Group"/>
+        </a>
+        <a class="btn btn--accent" href="https://cultgroup.ru/#contact">Обсудить проект</a>
+      </div>
+      <nav class="nav" aria-label="Навигация">
+        <a href="https://cultgroup.ru/#about">О группе</a>
+        <a href="https://cultgroup.ru/#studios">Студии</a>
+        <a href="https://cultgroup.ru/#powers">Суперсила</a>
+        <a href="https://cultgroup.ru/#work">Работы</a>
+        <a class="is-active" href="./" aria-current="page">Event</a>
+        <a href="https://cultgroup.ru/#contact">Контакты</a>
+      </nav>
+    </header>
+
     <main class="page">
       <a class="logo-link" href="https://cultgroup.ru/" target="_blank" rel="noopener">
         <img class="logo" src="assets/logo_pink.png" width="190" height="95" alt="Cult Group"/>
@@ -605,6 +746,17 @@
           по всем вопросам можно написать Лёне:
           <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">@leo_markhaschov</a>
         </p>
+        <div class="studios-row" aria-label="Продакшны Cult Group">
+          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films">
+            <img src="assets/studio_sputnik.png" alt="Sputnik Films"/>
+          </a>
+          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult">
+            <img src="assets/studio_cult.png" alt="Cult"/>
+          </a>
+          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster">
+            <img src="assets/studio_blaster.png" alt="Blaster"/>
+          </a>
+        </div>
       </footer>
     </main>
   </div>
