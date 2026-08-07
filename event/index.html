@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="description" content="Cult Group Birthday Party — 21.08 | 19:00, Усадьба Roden Manor"/>
+  <meta name="theme-color" content="#b5b5b5"/>
+  <title>Cult Group Birthday Party</title>
+  <link rel="icon" href="../favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"/>
+  <style>
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/JetBrainsMono-Variable.ttf") format("truetype");
+      font-weight: 100 800;
+      font-display: swap;
+    }
+
+    :root {
+      --page: 390px;
+      --ink: #151515;
+      --accent: #ff8ada;
+      --muted: #8b8b8b;
+      --bg-base: #b5b5b5;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --pad: 16px;
+      --content: 358px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--mono);
+      color: var(--ink);
+      background-color: var(--bg-base);
+      overflow-x: hidden;
+    }
+
+    /* Texture repeats for full scroll height */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-color: var(--bg-base);
+      background-image:
+        url("assets/bg_texture.jpg"),
+        url("assets/bg_grain.jpg");
+      background-size: 520px auto, 360px auto;
+      background-repeat: repeat, repeat;
+      background-position: 0 0, 40px 20px;
+      mix-blend-mode: normal;
+    }
+
+    .page-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/bg_grain.jpg");
+      background-size: 360px auto;
+      background-repeat: repeat;
+      opacity: 0.1;
+      mix-blend-mode: hard-light;
+      pointer-events: none;
+    }
+
+    .page-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/bg_texture.jpg");
+      background-size: 520px auto;
+      background-repeat: repeat;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: min(100%, var(--page));
+      min-height: 100dvh;
+      padding: 29px 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .logo {
+      width: 190px;
+      height: 95px;
+      background: var(--accent);
+      -webkit-mask: url("assets/logo_mask.png") center / contain no-repeat;
+      mask: url("assets/logo_mask.png") center / contain no-repeat;
+    }
+
+    .hero-block {
+      width: var(--content);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      text-align: center;
+    }
+
+    .hero-photo {
+      width: 188px;
+      height: 216px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo--bottom {
+      object-position: bottom;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 0 12px;
+    }
+
+    .hero-meta p {
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -1.56px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .invite {
+      position: relative;
+      width: var(--content);
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .invite p + p { margin-top: 1em; }
+
+    .invite .hl {
+      background: var(--accent);
+      color: var(--ink);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 1px 4px;
+    }
+
+    .panel {
+      width: var(--content);
+      border: 1px solid var(--ink);
+    }
+
+    .panel__head {
+      background: var(--accent);
+      border-bottom: 1px solid var(--ink);
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: -1.4px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-2 > div {
+      border-top: 1px solid var(--ink);
+      border-right: 1px solid var(--ink);
+      padding: 10px;
+      font-size: 16px;
+      letter-spacing: -1.12px;
+      line-height: 1.25;
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .grid-2 > div:nth-child(2n) { border-right: none; }
+    .grid-2 > div:nth-child(-n+2) { border-top: none; }
+
+    .section-title {
+      width: var(--content);
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: -1.4px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .section-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .dress {
+      width: var(--content);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 20px;
+      letter-spacing: -1.4px;
+      line-height: 1.25;
+    }
+
+    .dress__title {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* Infinite peek carousel */
+    .carousel {
+      width: 100%;
+      max-width: var(--page);
+      height: 430px;
+      position: relative;
+      overflow: hidden;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
+    }
+
+    .carousel.is-dragging { cursor: grabbing; }
+
+    .carousel__viewport {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel__slide {
+      position: absolute;
+      width: 267px;
+      height: 361px;
+      top: 50%;
+      left: 50%;
+      margin-top: -180.5px;
+      margin-left: -133.5px;
+      overflow: hidden;
+      background: #2a2a2a;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    .carousel__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .carousel__slide.is-center {
+      width: 304px;
+      height: 411px;
+      margin-top: -205.5px;
+      margin-left: -152px;
+      z-index: 3;
+    }
+
+    .carousel__hint {
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(21, 21, 21, 0.45);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .map-panel { width: var(--content); }
+
+    .map-body {
+      border: 1px solid var(--ink);
+      border-top: none;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .map-address {
+      width: 100%;
+      font-size: 16px;
+      letter-spacing: -1.12px;
+      line-height: 1.3;
+    }
+
+    .map-address a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .map-frame {
+      position: relative;
+      width: 336px;
+      max-width: 100%;
+      height: 317px;
+      border: 1px solid #000;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .map-frame img.map-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .map-path {
+      position: absolute;
+      left: 34.8%;
+      top: 40.5%;
+      width: 27.7%;
+      height: 16.7%;
+      pointer-events: none;
+    }
+
+    .map-star {
+      position: absolute;
+      left: 60.7%;
+      top: 35%;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    .map-howto {
+      width: 100%;
+      font-size: 16px;
+      letter-spacing: -1.12px;
+      line-height: 1.35;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      padding: 0 var(--pad);
+    }
+
+    .footer__bye {
+      font-size: 20px;
+      letter-spacing: -1.4px;
+      text-transform: uppercase;
+    }
+
+    .footer__contact {
+      width: 292px;
+      max-width: 100%;
+      font-size: 16px;
+      letter-spacing: -1.12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .footer__contact a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @media (min-width: 430px) {
+      body {
+        background: #9e9e9e;
+      }
+      .page {
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+
+  <div class="shell">
+    <main class="page">
+      <div class="logo" role="img" aria-label="Cult Group"></div>
+
+      <section class="hero-block" aria-label="Анонс">
+        <img class="hero-photo" src="assets/hero_dj.jpg" alt="DJ-сет"/>
+        <div class="hero-meta">
+          <p>21.08 | 19:00</p>
+          <p>cult group Birthday Party</p>
+          <p>Усадьба Roden</p>
+        </div>
+        <img class="hero-photo hero-photo--bottom" src="assets/hero_wine.jpg" alt="Вечер без галстуков"/>
+      </section>
+
+      <section class="invite" aria-label="Приглашение">
+        <p>Привет, коллега!</p>
+        <p>Мы запускаем группу продакшнов Cult Group и зовем тебя на наш первый день рождения.</p>
+        <p>План простой: это уютный <span class="hl">вечер без галстуков!</span></p>
+        <p>Не хотим превращать наше мероприятие в очередную задачу в твоем календаре.</p>
+      </section>
+
+      <section class="panel" aria-label="Программа">
+        <div class="panel__head">Что тебя ждёт?</div>
+        <div class="grid-2">
+          <div>Welcome drink</div>
+          <div>DJ-сет</div>
+          <div>Презентация группы</div>
+          <div>Еда и напитки</div>
+          <div>Фотограф и плёнка</div>
+          <div>Шахматная зона</div>
+          <div>Подарки</div>
+          <div>Общение</div>
+        </div>
+      </section>
+
+      <section class="section-stack" aria-label="Место">
+        <h2 class="section-title">Место: Усадьба Roden Manor</h2>
+        <div
+          class="carousel"
+          id="carousel-place"
+          data-carousel="place"
+          role="region"
+          aria-roledescription="карусель"
+          aria-label="Фото места"
+        >
+          <div class="carousel__viewport"></div>
+          <div class="carousel__hint">свайп ← →</div>
+        </div>
+      </section>
+
+      <section class="section-stack" aria-label="Дресс-код">
+        <div class="dress">
+          <p class="dress__title">Дресс-код — его нет</p>
+          <p>Приходи в чём-то нарядном, главное — оставайся собой!</p>
+        </div>
+        <div
+          class="carousel"
+          id="carousel-vibe"
+          data-carousel="vibe"
+          role="region"
+          aria-roledescription="карусель"
+          aria-label="Атмосфера вечера"
+        >
+          <div class="carousel__viewport"></div>
+          <div class="carousel__hint">свайп ← →</div>
+        </div>
+      </section>
+
+      <section class="map-panel" aria-label="Как пройти">
+        <div class="panel__head">Как пройти</div>
+        <div class="map-body">
+          <p class="map-address">
+            <a href="https://yandex.ru/maps/?text=Старосадский%20пер.%2C%205%2F8с6" target="_blank" rel="noopener">
+              Старосадский пер., 5/8с6 →
+            </a>
+          </p>
+          <div class="map-frame">
+            <img class="map-img" src="assets/map.png" alt="Карта прохода к Усадьбе Roden"/>
+            <img class="map-path" src="assets/map_path.svg" alt=""/>
+            <img class="map-star" src="assets/map_star.svg" alt=""/>
+          </div>
+          <p class="map-howto">
+            Оказавшись на Старосадском переулке, пройди через калитку на территорию МСХ. Держись по левую сторону здания и&nbsp;проходи вперед. Когда упрешься в&nbsp;здание перед собой, слева будет дворик — ты на&nbsp;месте!
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__bye">До скорой встречи!</p>
+        <p class="footer__contact">
+          по всем вопросам можно написать Лёне:
+          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">@leo_markhaschov</a>
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      /** Фото каруселей — подставляй сюда любые URL/пути */
+      const PLACE_PHOTOS = [
+        "assets/place_1.jpg",
+        "assets/place_2.jpg",
+        "assets/place_3.jpg",
+      ];
+
+      const VIBE_PHOTOS = [
+        "assets/vibe_1.jpg",
+        "assets/vibe_2.jpg",
+        "assets/vibe_3.jpg",
+      ];
+
+      const CAROUSELS = {
+        place: PLACE_PHOTOS,
+        vibe: VIBE_PHOTOS,
+      };
+
+      function mod(n, m) {
+        return ((n % m) + m) % m;
+      }
+
+      function createCarousel(root, photos) {
+        if (!photos || !photos.length) return;
+
+        const viewport = root.querySelector(".carousel__viewport");
+        let index = 0;
+        let dragX = 0;
+        let startX = 0;
+        let dragging = false;
+        let locked = false;
+
+        const slides = [-1, 0, 1].map((offset) => {
+          const el = document.createElement("div");
+          el.className = "carousel__slide";
+          el.dataset.offset = String(offset);
+          const img = document.createElement("img");
+          img.alt = "";
+          img.draggable = false;
+          el.appendChild(img);
+          viewport.appendChild(el);
+          return el;
+        });
+
+        function paint(withTransition) {
+          const n = photos.length;
+          slides.forEach((slide) => {
+            const offset = Number(slide.dataset.offset);
+            const imgIndex = mod(index + offset, n);
+            const img = slide.querySelector("img");
+            if (img.getAttribute("src") !== photos[imgIndex]) {
+              img.src = photos[imgIndex];
+            }
+
+            slide.classList.toggle("is-center", offset === 0);
+
+            const baseX =
+              offset === 0 ? 0 :
+              offset < 0 ? -196 :
+              196;
+            const rot =
+              offset === 0 ? (index % 2 === 0 ? 1.02 : -1.31) :
+              0;
+            const scale = offset === 0 ? 1 : 0.92;
+            const opacity = offset === 0 ? 1 : 0.92;
+
+            if (!withTransition) {
+              slide.style.transition = "none";
+            } else {
+              slide.style.transition = "";
+            }
+
+            const x = baseX + (offset === 0 ? dragX : dragX * 0.35);
+            slide.style.transform = `translate3d(${x}px, 0, 0) rotate(${rot}deg) scale(${scale})`;
+            slide.style.opacity = String(opacity);
+            slide.style.zIndex = offset === 0 ? "3" : "1";
+          });
+
+          if (!withTransition) {
+            // Force reflow then restore transitions
+            void viewport.offsetHeight;
+            slides.forEach((s) => { s.style.transition = ""; });
+          }
+        }
+
+        function go(delta) {
+          if (locked) return;
+          locked = true;
+          index = mod(index + delta, photos.length);
+          dragX = 0;
+          paint(true);
+          window.setTimeout(() => { locked = false; }, 360);
+        }
+
+        function onPointerDown(clientX) {
+          if (locked) return;
+          dragging = true;
+          root.classList.add("is-dragging");
+          startX = clientX;
+          dragX = 0;
+          paint(false);
+        }
+
+        function onPointerMove(clientX) {
+          if (!dragging) return;
+          dragX = clientX - startX;
+          paint(false);
+        }
+
+        function onPointerUp() {
+          if (!dragging) return;
+          dragging = false;
+          root.classList.remove("is-dragging");
+          const threshold = 48;
+          if (dragX <= -threshold) go(1);
+          else if (dragX >= threshold) go(-1);
+          else {
+            dragX = 0;
+            paint(true);
+          }
+        }
+
+        root.addEventListener("touchstart", (e) => {
+          if (e.touches.length !== 1) return;
+          onPointerDown(e.touches[0].clientX);
+        }, { passive: true });
+
+        root.addEventListener("touchmove", (e) => {
+          if (!dragging || e.touches.length !== 1) return;
+          onPointerMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        root.addEventListener("touchend", onPointerUp);
+        root.addEventListener("touchcancel", onPointerUp);
+
+        root.addEventListener("pointerdown", (e) => {
+          if (e.pointerType === "touch") return;
+          root.setPointerCapture(e.pointerId);
+          onPointerDown(e.clientX);
+        });
+
+        root.addEventListener("pointermove", (e) => {
+          if (e.pointerType === "touch") return;
+          onPointerMove(e.clientX);
+        });
+
+        root.addEventListener("pointerup", (e) => {
+          if (e.pointerType === "touch") return;
+          onPointerUp();
+        });
+
+        root.addEventListener("pointercancel", onPointerUp);
+
+        paint(false);
+      }
+
+      Object.keys(CAROUSELS).forEach((key) => {
+        const el = document.querySelector(`[data-carousel="${key}"]`);
+        if (el) createCarousel(el, CAROUSELS[key]);
+      });
+    })();
+  </script>
+</body>
+</html>
