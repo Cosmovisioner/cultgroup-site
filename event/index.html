@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <meta name="description" content="Cult Group Birthday Party — 21.08 | 19:00, Усадьба Roden Manor"/>
+  <meta name="description" content="Cult Group Birthday Party — 21.08 | 19:00–22:00, Усадьба Roden Manor. Программа: TED-выступления хэдов, еда, розыгрыш."/>
   <meta name="theme-color" content="#b5b5b5"/>
   <title>Cult Group Birthday Party</title>
   <link rel="icon" href="../favicon.ico" sizes="any"/>
@@ -530,6 +530,178 @@
       height: 9.5px;
     }
 
+    /* Две плитки: приглашение / программа */
+    .view-nav {
+      width: var(--content);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--ink);
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(181, 181, 181, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .view-nav__btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      border-right: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.6px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      padding: 12px 8px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .view-nav__btn:last-child { border-right: none; }
+
+    .view-nav__btn:hover { background: rgba(255, 138, 218, 0.35); }
+
+    .view-nav__btn.is-active {
+      background: var(--accent);
+    }
+
+    .view { display: none; width: 100%; }
+    .view.is-active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .program {
+      width: var(--content);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .program__block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .program__time {
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      line-height: 1.35;
+      padding: 10px 12px;
+      background: var(--accent);
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+
+    .program__lead {
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: -0.7px;
+      line-height: 1.4;
+      color: var(--ink);
+      padding: 0 2px;
+    }
+
+    .talks {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--ink);
+    }
+
+    .talk {
+      padding: 14px 12px;
+      border-top: 1px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .talk:first-child { border-top: none; }
+
+    .talk__who {
+      font-size: 14px;
+      letter-spacing: -0.7px;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .talk__role {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      letter-spacing: -0.4px;
+      text-transform: none;
+      color: rgba(21, 21, 21, 0.62);
+      font-weight: 300;
+    }
+
+    .talk__title {
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      line-height: 1.35;
+    }
+
+    .talk__title span {
+      background: var(--accent);
+      padding: 1px 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .program__outro {
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: -0.7px;
+      line-height: 1.4;
+    }
+
+    .program__back {
+      width: 100%;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: -0.6px;
+      text-transform: uppercase;
+      padding: 12px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: background 0.15s;
+    }
+
+    .program__back:hover { background: var(--accent); }
+
+    .program__amenities {
+      width: 100%;
+      margin-top: 4px;
+    }
+
     @media (min-width: 430px) {
       .page {
         box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
@@ -548,6 +720,12 @@
         <img class="logo" src="assets/logo_pink.png" width="190" height="95" alt="Cult Group"/>
       </a>
 
+      <nav class="view-nav" aria-label="Разделы страницы">
+        <a class="view-nav__btn is-active" href="#invite" data-view="invite">Приглашение</a>
+        <a class="view-nav__btn" href="#program" data-view="program">Программа</a>
+      </nav>
+
+      <div class="view is-active" id="view-invite" data-view-panel="invite">
       <section class="hero-block" aria-label="Анонс">
         <img class="hero-photo hero-photo--top" src="assets/hero_dj.jpg" alt="DJ-сет"/>
         <div class="hero-meta">
@@ -563,18 +741,19 @@
         <p>Мы запускаем группу продакшнов <a href="https://cultgroup.ru/" target="_blank" rel="noopener">Cult Group</a> и зовем тебя на наш первый день рождения.</p>
         <p>План простой: это уютный <span class="hl">вечер без галстуков!</span></p>
         <p>Не хотим превращать наше мероприятие в очередную задачу в твоем календаре.</p>
+        <p>Полный тайминг и темы выступлений — в разделе <a href="#program">Программа</a>.</p>
       </section>
 
-      <section class="panel" aria-label="Программа">
+      <section class="panel" aria-label="Что тебя ждёт">
         <div class="panel__head">Что тебя ждёт?</div>
         <div class="grid-2">
           <div>Welcome drink</div>
           <div>DJ-сет</div>
-          <div>Презентация группы</div>
+          <div>TED-выступления</div>
           <div>Еда и напитки</div>
           <div>Фотограф и плёнка</div>
           <div>Шахматная зона</div>
-          <div>Подарки</div>
+          <div>Розыгрыш призов</div>
           <div>Общение</div>
         </div>
       </section>
@@ -661,6 +840,109 @@
           </a>
         </div>
       </footer>
+      </div>
+
+      <div class="view" id="view-program" data-view-panel="program">
+      <section class="program" aria-label="Программа вечера">
+        <div class="program__block">
+          <h2 class="program__time">19:00–20:00 — сбор гостей</h2>
+          <p class="program__lead">Знакомства, еда и напитки, фото и спокойный старт вечера.</p>
+        </div>
+
+        <div class="program__block">
+          <h2 class="program__time">20:00–20:30 — выступления</h2>
+          <p class="program__lead">6 коротких выступлений от наших хэдов в формате TED. По&nbsp;~5&nbsp;минут каждый.</p>
+
+          <div class="talks">
+            <article class="talk">
+              <p class="talk__who">
+                Константин Мельников
+                <span class="talk__role">CEO Cult Group, основатель Cult</span>
+              </p>
+              <p class="talk__title"><span>«Бизнес-СДВГ: как я научился превращать тревогу в систему развития»</span></p>
+            </article>
+
+            <article class="talk">
+              <p class="talk__who">
+                Дмитрий Квашнин
+                <span class="talk__role">CEO Sputnik Films, директор по развитию Cult Group</span>
+              </p>
+              <p class="talk__title"><span>«Мама, я документалист: как я сделал камин-аут и признался себе в страшном»</span></p>
+            </article>
+
+            <article class="talk">
+              <p class="talk__who">
+                Денис Леваков
+                <span class="talk__role">CEO Cult</span>
+              </p>
+              <p class="talk__title"><span>«Как я перестал защищать старый продакшн и начал строить новый»</span></p>
+            </article>
+
+            <article class="talk">
+              <p class="talk__who">
+                Елизавета Иванова
+                <span class="talk__role">CEO Blaster</span>
+              </p>
+              <p class="talk__title"><span>«Как я уволила своих руководителей и исполнила давнюю страшную мечту»</span></p>
+            </article>
+
+            <article class="talk">
+              <p class="talk__who">
+                Татьяна Захарова
+                <span class="talk__role">CEO стартап-студии ТехноТигры</span>
+              </p>
+              <p class="talk__title"><span>«Заказное убийство жаб»</span></p>
+            </article>
+
+            <article class="talk">
+              <p class="talk__who">
+                Егор Мараев
+                <span class="talk__role">Основатель «Робот и сыновья»</span>
+              </p>
+              <p class="talk__title"><span>«Как я всех уволил и обрёл счастье»</span></p>
+            </article>
+          </div>
+        </div>
+
+        <div class="program__block">
+          <h2 class="program__time">Далее до 22:00</h2>
+          <p class="program__outro">Еда и напитки, фотоплёнка для гостей, фотозона, бирпонг, старая игровая ТВ-приставка, шахматы, розыгрыш призов и раздача подарков от юнитов.</p>
+          <div class="panel program__amenities" aria-label="Активности">
+            <div class="grid-2">
+              <div>Еда и напитки</div>
+              <div>Фотоплёнка</div>
+              <div>Фотозона</div>
+              <div>Бирпонг</div>
+              <div>ТВ-приставка</div>
+              <div>Шахматы</div>
+              <div>Розыгрыш</div>
+              <div>Подарки</div>
+            </div>
+          </div>
+        </div>
+
+        <a class="program__back" href="#invite">← К приглашению</a>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__bye">До скорой встречи!</p>
+        <p class="footer__contact">
+          по всем вопросам можно написать Лёне:
+          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">@leo_markhaschov</a>
+        </p>
+        <div class="studios-row" aria-label="Продакшны Cult Group">
+          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films">
+            <img src="assets/studio_sputnik.png" alt="Sputnik Films"/>
+          </a>
+          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult">
+            <img src="assets/studio_cult.png" alt="Cult"/>
+          </a>
+          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster">
+            <img src="assets/studio_blaster.png" alt="Blaster"/>
+          </a>
+        </div>
+      </footer>
+      </div>
     </main>
   </div>
 
@@ -858,6 +1140,50 @@
         const el = document.querySelector(`[data-carousel="${key}"]`);
         if (el) createCarousel(el, CAROUSELS[key]);
       });
+
+      /** Две плитки: #invite | #program */
+      const VIEWS = ["invite", "program"];
+
+      function currentViewFromHash() {
+        const raw = (location.hash || "#invite").replace(/^#/, "").toLowerCase();
+        return VIEWS.includes(raw) ? raw : "invite";
+      }
+
+      function setView(view, { scroll } = { scroll: true }) {
+        const next = VIEWS.includes(view) ? view : "invite";
+        document.querySelectorAll("[data-view-panel]").forEach((panel) => {
+          const on = panel.getAttribute("data-view-panel") === next;
+          panel.classList.toggle("is-active", on);
+        });
+        document.querySelectorAll(".view-nav__btn").forEach((btn) => {
+          btn.classList.toggle("is-active", btn.getAttribute("data-view") === next);
+        });
+        if (scroll) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        const wantHash = "#" + next;
+        if (location.hash !== wantHash) {
+          history.replaceState(null, "", wantHash);
+        }
+      }
+
+      function syncFromHash() {
+        setView(currentViewFromHash(), { scroll: false });
+      }
+
+      document.querySelectorAll(".view-nav__btn, a[href='#program'], a[href='#invite']").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          const href = el.getAttribute("href") || "";
+          const view = el.getAttribute("data-view") || href.replace(/^#/, "");
+          if (!VIEWS.includes(view)) return;
+          e.preventDefault();
+          history.pushState(null, "", "#" + view);
+          setView(view, { scroll: true });
+        });
+      });
+
+      window.addEventListener("hashchange", syncFromHash);
+      syncFromHash();
     })();
   </script>
 </body>
