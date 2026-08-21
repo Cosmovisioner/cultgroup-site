@@ -956,10 +956,10 @@
       <a href="#studios">Студии</a>
       <a href="#powers">Суперсила</a>
       <a href="#work">Работы</a>
-      <a href="event/">Event</a>
+      <a href="event/" data-ym-goal="nav_event">Event</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a class="btn btn--accent site-header__cta" href="#contact">Обсудить проект</a>
+    <a class="btn btn--accent site-header__cta" href="#contact" data-ym-goal="cta_discuss">Обсудить проект</a>
   </header>
 
   <main id="top">
@@ -973,7 +973,7 @@
           <h1 class="hero-h1">Объединение<br/>технологичных продакшнов</h1>
           <p class="hero-lead">Делаем работу над контентом эффективной. Cult, Blaster и Sputnik — в одном месте.</p>
           <div class="hero-actions">
-            <a class="btn btn--accent" href="#work">Смотреть работы</a>
+            <a class="btn btn--accent" href="#work" data-ym-goal="cta_work">Смотреть работы</a>
             <a class="btn" href="#about">О группе</a>
           </div>
         </div>
@@ -1012,7 +1012,7 @@
               от масштабных ТВ-роликов и съёмок в других странах до сложных ИИ-проектов,<br/>
               от фото-кампейнов до имиджевых видео.
             </p>
-            <a class="btn" href="https://cult.team" target="_blank" rel="noopener">cult.team →</a>
+            <a class="btn" href="https://cult.team" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"cult"}'>cult.team →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/blaster_logo.png" alt="Blaster"/>
@@ -1021,7 +1021,7 @@
               ИИ-роликов, анимации и мультипликации.<br/>
               Их суперсила — совмещение качественного артдирекшна и современных технологий.
             </p>
-            <a class="btn" href="https://blasterstudio.ru" target="_blank" rel="noopener">blasterstudio.ru →</a>
+            <a class="btn" href="https://blasterstudio.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"blaster"}'>blasterstudio.ru →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/sputnik_logo_ink.png" alt="Sputnik"/>
@@ -1031,7 +1031,7 @@
               Их фильмы выходят в широкий кинопрокат и собирают награды на фестивалях,
               а проекты для брендов собирают миллионы просмотров.
             </p>
-            <a class="btn" href="https://sputnikfilms.ru" target="_blank" rel="noopener">sputnikfilms.ru →</a>
+            <a class="btn" href="https://sputnikfilms.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"sputnik"}'>sputnikfilms.ru →</a>
           </div>
         </div>
       </div>
@@ -1371,12 +1371,12 @@
         <h2 class="contact-h1">Любой контент в одном окне!</h2>
         <p class="contact-sub">Леонид Мархашов · New business manager</p>
         <div class="contact-list">
-          <a class="contact-row" href="mailto:leo@cult.team"><span class="contact-main"><span>leo@cult.team</span></span><span class="contact-mark">01</span></a>
-          <a class="contact-row" href="https://cult.team" target="_blank" rel="noopener"><span class="contact-main"><span>cult.team</span><span class="contact-dim">Cult</span></span><span class="contact-mark">02</span></a>
-          <a class="contact-row" href="https://blasterstudio.ru" target="_blank" rel="noopener"><span class="contact-main"><span>blasterstudio.ru</span><span class="contact-dim">Blaster</span></span><span class="contact-mark">03</span></a>
-          <a class="contact-row" href="https://sputnikfilms.ru" target="_blank" rel="noopener"><span class="contact-main"><span>sputnikfilms.ru</span><span class="contact-dim">Sputnik Films</span></span><span class="contact-mark">04</span></a>
+          <a class="contact-row" href="mailto:leo@cult.team" data-ym-goal="contact_email"><span class="contact-main"><span>leo@cult.team</span></span><span class="contact-mark">01</span></a>
+          <a class="contact-row" href="https://cult.team" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"cult","place":"contact"}'><span class="contact-main"><span>cult.team</span><span class="contact-dim">Cult</span></span><span class="contact-mark">02</span></a>
+          <a class="contact-row" href="https://blasterstudio.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"blaster","place":"contact"}'><span class="contact-main"><span>blasterstudio.ru</span><span class="contact-dim">Blaster</span></span><span class="contact-mark">03</span></a>
+          <a class="contact-row" href="https://sputnikfilms.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"sputnik","place":"contact"}'><span class="contact-main"><span>sputnikfilms.ru</span><span class="contact-dim">Sputnik Films</span></span><span class="contact-mark">04</span></a>
         </div>
-        <a class="contact-tg" href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">
+        <a class="contact-tg" href="https://t.me/leo_markhaschov" target="_blank" rel="noopener" data-ym-goal="contact_tg">
           <img src="_assets/contacts_telegram.png" alt="Telegram"/>
           <span>@leo_markhaschov</span>
         </a>
@@ -1435,7 +1435,7 @@
       </div>`;
     }
 
-    function renderCopy(c) {
+    function renderCopy(c, caseId) {
       let html = `<img class="case-logo ${c.logoMod}" src="${ASSETS_BASE}/${c.logo}" alt=""/>`;
       html += `<h2 class="${c.sputnik ? '' : 'h2--detailed'}">${c.titleHtml}</h2>`;
       if (c.bodyHtml) {
@@ -1447,8 +1447,9 @@
         }
       }
       if (c.buttons.length) {
+        const safeId = escapeHtml(caseId || '');
         html += `<div class="btn-row">${c.buttons.map(btn =>
-          `<a class="btn btn--accent" href="${btn.url}" target="_blank" rel="noopener">${escapeHtml(btn.label)}</a>`
+          `<a class="btn btn--accent" href="${btn.url}" target="_blank" rel="noopener" data-ym-goal="case_watch" data-ym-params='{"case":"${safeId}"}'>${escapeHtml(btn.label)}</a>`
         ).join('')}</div>`;
       }
       return html;
@@ -1457,8 +1458,11 @@
     function openCaseModal(id) {
       const c = CASES[id];
       if (!c) return;
+      if (typeof window.cultReachGoal === 'function') {
+        window.cultReachGoal('case_open', { case: id });
+      }
       modalMedia.innerHTML = renderMedia(c);
-      modalCopy.innerHTML = renderCopy(c);
+      modalCopy.innerHTML = renderCopy(c, id);
       modalCopy.classList.toggle('copy--sputnik', !!c.sputnik);
       modal.classList.add('is-open');
       modal.removeAttribute('hidden');
@@ -1510,6 +1514,9 @@
     }, { rootMargin: '-40% 0px -50% 0px' });
     sections.forEach(s => obs.observe(s));
   </script>
+  <!-- analytics: Яндекс.Метрика — см. note_cult_group_site_analytics_metrika_2026.md -->
+  <script src="/js/analytics.config.js"></script>
+  <script src="/js/analytics.js"></script>
   <!-- portfolio: 25 cases from deck -->
 </body>
 </html>
