@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <meta name="description" content="Cult Group Birthday Party — 21.08 | 19:00–22:00, Усадьба Roden Manor. Программа: TED-выступления хэдов, еда, розыгрыш."/>
+  <meta name="description" content="Cult Group Premier Party — 21.08 | 19:00–22:00, Усадьба Roden Manor. Программа: TED-выступления хэдов, еда, розыгрыш."/>
   <meta name="theme-color" content="#b5b5b5"/>
-  <title>Cult Group Birthday Party</title>
+  <title>Cult Group Premier Party</title>
   <link rel="icon" href="../favicon.ico" sizes="any"/>
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.ico"/>
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"/>
@@ -716,7 +716,7 @@
   </div>
   <div class="shell">
     <main class="page">
-      <a class="logo-link" href="https://cultgroup.ru/" target="_blank" rel="noopener">
+      <a class="logo-link" href="https://cultgroup.ru/" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"cultgroup","place":"event_logo"}'>
         <img class="logo" src="assets/logo_pink.png" width="190" height="95" alt="Cult Group"/>
       </a>
 
@@ -730,7 +730,7 @@
         <img class="hero-photo hero-photo--top" src="assets/hero_dj.jpg" alt="DJ-сет"/>
         <div class="hero-meta">
           <p>21.08 | 19:00</p>
-          <p>cult group Birthday Party</p>
+          <p>cult group Premier Party</p>
           <p>Усадьба Roden</p>
         </div>
         <img class="hero-photo hero-photo--bottom" src="assets/hero_wine.jpg" alt="Вечер без галстуков"/>
@@ -807,7 +807,7 @@
         <div class="panel__head">Как пройти</div>
         <div class="map-body">
           <p class="map-address">
-            <a href="https://yandex.ru/maps/?text=Старосадский%20пер.%2C%205%2F8с6" target="_blank" rel="noopener">
+            <a href="https://yandex.ru/maps/?text=Старосадский%20пер.%2C%205%2F8с6" target="_blank" rel="noopener" data-ym-goal="event_map">
               Старосадский пер., 5/8с6 →
             </a>
           </p>
@@ -826,16 +826,16 @@
         <p class="footer__bye">До скорой встречи!</p>
         <p class="footer__contact">
           по всем вопросам можно написать Лёне:
-          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">@leo_markhaschov</a>
+          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener" data-ym-goal="event_tg">@leo_markhaschov</a>
         </p>
         <div class="studios-row" aria-label="Продакшны Cult Group">
-          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films">
+          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films" data-ym-goal="studio_out" data-ym-params='{"studio":"sputnik","place":"event"}'>
             <img src="assets/studio_sputnik.png" alt="Sputnik Films"/>
           </a>
-          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult">
+          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult" data-ym-goal="studio_out" data-ym-params='{"studio":"cult","place":"event"}'>
             <img src="assets/studio_cult.png" alt="Cult"/>
           </a>
-          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster">
+          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster" data-ym-goal="studio_out" data-ym-params='{"studio":"blaster","place":"event"}'>
             <img src="assets/studio_blaster.png" alt="Blaster"/>
           </a>
         </div>
@@ -928,16 +928,16 @@
         <p class="footer__bye">До скорой встречи!</p>
         <p class="footer__contact">
           по всем вопросам можно написать Лёне:
-          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener">@leo_markhaschov</a>
+          <a href="https://t.me/leo_markhaschov" target="_blank" rel="noopener" data-ym-goal="event_tg">@leo_markhaschov</a>
         </p>
         <div class="studios-row" aria-label="Продакшны Cult Group">
-          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films">
+          <a href="https://sputnikfilms.ru" target="_blank" rel="noopener" title="Sputnik Films" data-ym-goal="studio_out" data-ym-params='{"studio":"sputnik","place":"event"}'>
             <img src="assets/studio_sputnik.png" alt="Sputnik Films"/>
           </a>
-          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult">
+          <a href="https://cult.team" target="_blank" rel="noopener" title="Cult" data-ym-goal="studio_out" data-ym-params='{"studio":"cult","place":"event"}'>
             <img src="assets/studio_cult.png" alt="Cult"/>
           </a>
-          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster">
+          <a href="https://blasterstudio.ru" target="_blank" rel="noopener" title="Blaster" data-ym-goal="studio_out" data-ym-params='{"studio":"blaster","place":"event"}'>
             <img src="assets/studio_blaster.png" alt="Blaster"/>
           </a>
         </div>
@@ -1160,6 +1160,9 @@
         });
         if (scroll) {
           window.scrollTo({ top: 0, behavior: "smooth" });
+          if (typeof window.cultReachGoal === "function") {
+            window.cultReachGoal(next === "program" ? "event_program" : "event_invite", { view: next });
+          }
         }
         const wantHash = "#" + next;
         if (location.hash !== wantHash) {
@@ -1186,5 +1189,8 @@
       syncFromHash();
     })();
   </script>
+  <!-- analytics: Яндекс.Метрика — см. ../note_cult_group_site_analytics_metrika_2026.md -->
+  <script src="/js/analytics.config.js"></script>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>
