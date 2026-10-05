@@ -237,19 +237,19 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 720px;
-      height: 480px;
-      transform: translate(-52%, -50%) rotate(-79deg);
+      width: 560px;
+      height: 780px;
+      transform: translate(-50%, -50%) rotate(-3deg);
       object-fit: cover;
       pointer-events: none;
-      opacity: 0.95;
+      border-radius: 2px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
     }
 
     .polaroid {
       position: absolute;
       width: 158px;
-      height: 204px;
-      padding: 8px 8px 28px;
+      padding: 7px 7px 26px;
       background: var(--paper);
       box-shadow: 1px 2px 6px rgba(0,0,0,0.35);
       border: 0;
@@ -257,7 +257,8 @@
       appearance: none;
       -webkit-appearance: none;
       z-index: 2;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: filter 0.2s ease, box-shadow 0.2s ease;
+      line-height: 0;
     }
 
     .polaroid:focus-visible {
@@ -265,12 +266,13 @@
       outline-offset: 3px;
     }
 
-    .polaroid:active { transform: scale(0.98); }
+    .polaroid:active { filter: brightness(0.96); }
 
     .polaroid img {
-      width: 100%;
-      height: 100%;
+      width: 144px;
+      height: 168px;
       object-fit: cover;
+      object-position: center;
       display: block;
     }
 
@@ -483,12 +485,14 @@
       padding: 16px;
       background: rgba(21,21,21,0.72);
       backdrop-filter: blur(2px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .modal.is-open { display: flex; }
 
     .modal__close {
-      position: absolute;
+      position: fixed;
       top: max(16px, env(safe-area-inset-top));
       right: 16px;
       width: 36px;
@@ -496,78 +500,85 @@
       border: 0;
       background: transparent;
       cursor: pointer;
-      z-index: 2;
+      z-index: 3;
       color: #cfcfcf;
       font-size: 28px;
       line-height: 1;
     }
 
     .dossier {
+      --manila: #e8d9b8;
       position: relative;
-      width: min(340px, 100%);
-      background: #e8d9b8 url("assets/folder.jpg") center / 180% no-repeat;
-      background-position: 30% 40%;
-      border-radius: 4px 18px 8px 8px;
-      padding: 28px 22px 22px;
+      width: min(320px, calc(100% - 8px));
+      margin: 24px auto;
+      background-color: var(--manila);
+      background-image: url("assets/manila.jpg");
+      background-size: cover;
+      background-position: center;
+      border-radius: 6px;
+      padding: 36px 24px 22px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.45);
       color: var(--ink);
+      overflow: visible;
+      flex-shrink: 0;
     }
 
     .dossier::before {
       content: "";
       position: absolute;
       left: -14px;
-      top: 38%;
+      top: 36%;
       width: 18px;
-      height: 64px;
-      background: #e8d9b8;
+      height: 70px;
+      background: var(--manila);
       border-radius: 8px 0 0 8px;
       box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
     }
 
     .dossier__photos {
       position: relative;
-      height: 270px;
+      height: 280px;
       margin: 0 auto 18px;
       width: 220px;
     }
 
     .dossier__shot {
       position: absolute;
-      width: 178px;
-      height: 230px;
-      padding: 7px;
+      width: 168px;
+      padding: 7px 7px 22px;
       background: var(--paper);
       box-shadow: 1px 2px 6px rgba(0,0,0,0.3);
+      line-height: 0;
       overflow: hidden;
     }
 
     .dossier__shot img {
-      width: 100%;
-      height: 100%;
+      width: 154px;
+      height: 200px;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
 
     .dossier__shot--back {
-      left: 28px;
-      top: 18px;
+      left: 36px;
+      top: 8px;
       transform: rotate(4.5deg);
       z-index: 1;
     }
 
     .dossier__shot--front {
-      left: 8px;
-      top: 28px;
+      left: 12px;
+      top: 22px;
       transform: rotate(-4.5deg);
       z-index: 2;
     }
 
     .dossier__clip {
       position: absolute;
-      left: 42px;
-      top: -6px;
-      width: 72px;
+      left: 58px;
+      top: 0;
+      width: 64px;
       height: auto;
       z-index: 3;
       transform: rotate(6.5deg);
@@ -576,21 +587,34 @@
     }
 
     .dossier__table {
+      position: relative;
+      z-index: 2;
       width: 100%;
       border-collapse: collapse;
+      background: rgba(232, 217, 184, 0.92);
       font-size: 14px;
       letter-spacing: -0.05em;
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .dossier__table td {
       border: 1px solid var(--ink);
-      padding: 6px 10px;
+      padding: 7px 10px;
       vertical-align: top;
+      background: transparent;
+    }
+
+    .dossier__table .name {
+      white-space: nowrap;
+      font-weight: 500;
     }
 
     .dossier__table .role { width: 62%; }
-    .dossier__table .bio { font-size: 12px; letter-spacing: -0.04em; }
+    .dossier__table .bio {
+      font-size: 12px;
+      letter-spacing: -0.03em;
+      line-height: 1.35;
+    }
 
     @media (min-width: 480px) {
       .page { padding-top: 20px; }
@@ -634,7 +658,7 @@
       </section>
 
       <section class="heroes" aria-label="Герои фильма">
-        <img class="heroes__folder" src="assets/folder.jpg" alt="" aria-hidden="true"/>
+        <img class="heroes__folder" src="assets/manila.jpg" alt="" aria-hidden="true"/>
 
         <span class="tape tape--1" aria-hidden="true"></span>
         <span class="tape tape--2" aria-hidden="true"></span>
@@ -648,16 +672,16 @@
         <p class="note note--unite">что их<br/>объединяет?</p>
 
         <button class="polaroid polaroid--leyla" type="button" data-hero="leyla" aria-label="Открыть карточку: Лейла">
-          <img src="assets/polaroid_a.jpg" alt="Лейла"/>
+          <img src="assets/polaroid_a_portrait.jpg" alt="Лейла"/>
         </button>
         <button class="polaroid polaroid--alan" type="button" data-hero="alan" aria-label="Открыть карточку: Алан">
-          <img src="assets/polaroid_a2.jpg" alt="Алан"/>
+          <img src="assets/polaroid_a2_portrait.jpg" alt="Алан"/>
         </button>
         <button class="polaroid polaroid--zaur" type="button" data-hero="zaur" aria-label="Открыть карточку: Заур">
-          <img src="assets/polaroid_b.jpg" alt="Заур"/>
+          <img src="assets/polaroid_b_portrait.jpg" alt="Заур"/>
         </button>
         <button class="polaroid polaroid--mahkond" type="button" data-hero="mahkond" aria-label="Открыть карточку: Mah Kond">
-          <img src="assets/polaroid_c.jpg" alt="Mah Kond"/>
+          <img src="assets/polaroid_c_portrait.jpg" alt="Mah Kond"/>
         </button>
       </section>
 
@@ -709,7 +733,7 @@
       </div>
       <table class="dossier__table">
         <tr>
-          <td id="modal-name"></td>
+          <td class="name" id="modal-name"></td>
           <td class="role" id="modal-role"></td>
         </tr>
         <tr>
