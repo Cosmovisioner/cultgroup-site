@@ -898,10 +898,10 @@
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeHero();
     });
 
-    // Trailer: preview stays until play
+    // Trailer on panorama preview
     const trailer = document.getElementById("trailer");
-    const playBtn = trailer && trailer.querySelector(".poster__play");
-    const videoFrame = trailer && trailer.querySelector(".poster__video");
+    const playBtn = trailer && trailer.querySelector(".panorama__play");
+    const videoFrame = trailer && trailer.querySelector(".panorama__video");
     if (trailer && playBtn && videoFrame) {
       const startTrailer = () => {
         if (trailer.classList.contains("is-playing")) return;
