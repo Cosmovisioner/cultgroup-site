@@ -144,10 +144,6 @@
       z-index: 4;
     }
 
-    .poster.is-playing {
-      cursor: default;
-    }
-
     .poster__img {
       position: absolute;
       inset: 0;
@@ -163,7 +159,6 @@
       height: 110px;
       background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
       z-index: 1;
-      pointer-events: none;
     }
 
     .poster__title {
@@ -174,7 +169,6 @@
       z-index: 2;
       width: 84%;
       height: auto;
-      pointer-events: none;
     }
 
     .poster__credits {
@@ -189,73 +183,9 @@
       text-transform: uppercase;
       color: #fff;
       font-weight: 300;
-      pointer-events: none;
     }
 
     .poster__credits b { font-weight: 700; }
-
-    .poster__play {
-      position: absolute;
-      left: 50%;
-      top: 46%;
-      transform: translate(-50%, -50%);
-      z-index: 5;
-      width: 64px;
-      height: 64px;
-      border: 0;
-      padding: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      background: rgba(17, 17, 17, 0.55);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
-      display: grid;
-      place-items: center;
-      transition: transform 0.2s ease, background 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .poster__play:hover,
-    .poster__play:focus-visible {
-      transform: translate(-50%, -50%) scale(1.06);
-      background: rgba(17, 17, 17, 0.72);
-      outline: none;
-    }
-
-    .poster__play:focus-visible {
-      box-shadow: 0 0 0 2px #f974be, 0 4px 18px rgba(0,0,0,0.4);
-    }
-
-    .poster__play-icon {
-      width: 0;
-      height: 0;
-      margin-left: 4px;
-      border-style: solid;
-      border-width: 12px 0 12px 20px;
-      border-color: transparent transparent transparent #f2f2f2;
-    }
-
-    .poster__video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: none;
-      background: #000;
-      z-index: 6;
-    }
-
-    .poster.is-playing .poster__img,
-    .poster.is-playing .poster__fade,
-    .poster.is-playing .poster__title,
-    .poster.is-playing .poster__credits,
-    .poster.is-playing .poster__play {
-      display: none;
-    }
-
-    .poster.is-playing .poster__video {
-      display: block;
-    }
 
     .brand-row {
       position: absolute;
@@ -425,20 +355,82 @@
       filter: brightness(0) saturate(100%) invert(12%) sepia(54%) saturate(2500%) hue-rotate(325deg);
     }
 
-    /* ——— Panorama ——— */
+    /* ——— Panorama / trailer ——— */
     .panorama {
+      position: relative;
       width: min(100%, 392px);
       height: 222px;
       overflow: hidden;
       flex-shrink: 0;
+      background: #000;
     }
 
-    .panorama img {
+    .panorama__img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       transform: scale(1.02);
+    }
+
+    .panorama__play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 64px;
+      height: 64px;
+      border: 0;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      background: rgba(17, 17, 17, 0.55);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+      display: grid;
+      place-items: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .panorama__play:hover,
+    .panorama__play:focus-visible {
+      transform: translate(-50%, -50%) scale(1.06);
+      background: rgba(17, 17, 17, 0.72);
+      outline: none;
+    }
+
+    .panorama__play:focus-visible {
+      box-shadow: 0 0 0 2px #f974be, 0 4px 18px rgba(0,0,0,0.4);
+    }
+
+    .panorama__play-icon {
+      width: 0;
+      height: 0;
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent #f2f2f2;
+    }
+
+    .panorama__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: none;
+      background: #000;
+      z-index: 3;
+    }
+
+    .panorama.is-playing .panorama__img,
+    .panorama.is-playing .panorama__play {
+      display: none;
+    }
+
+    .panorama.is-playing .panorama__video {
+      display: block;
     }
 
     /* ——— Ticket ——— */
@@ -708,7 +700,7 @@
           <img src="assets/logo_sputnik.svg" alt="Sputnik Films"/>
         </div>
 
-        <div class="poster" id="trailer" data-youtube-id="FbJi_J1xgzA">
+        <div class="poster">
           <img class="poster__img" src="assets/poster_wide.jpg" alt="Кадр из фильма «Там, где наш дом»"/>
           <div class="poster__fade" aria-hidden="true"></div>
           <img class="poster__title" src="assets/title_logo.svg" alt="Там, где наш дом · Северная Осетия"/>
@@ -717,16 +709,6 @@
             <b>sputnik films</b> в главных ролях <b>Алан Байсангуров Валерий Датиев Заур Тедеев Лейла Теблоева</b>
             режиссёры <b>Дмитрий Квашнин Владимир Тарасов Сослан Чехоев</b>
           </p>
-          <button class="poster__play" type="button" aria-label="Смотреть трейлер">
-            <span class="poster__play-icon" aria-hidden="true"></span>
-          </button>
-          <iframe
-            class="poster__video"
-            title="Трейлер «Там, где наш дом»"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin"
-          ></iframe>
         </div>
       </section>
 
@@ -765,8 +747,18 @@
         </button>
       </section>
 
-      <section class="panorama" aria-hidden="true">
-        <img src="assets/panorama.jpg" alt=""/>
+      <section class="panorama" id="trailer" data-youtube-id="FbJi_J1xgzA" aria-label="Трейлер фильма">
+        <img class="panorama__img" src="assets/panorama.jpg" alt="Кадр из фильма «Там, где наш дом»"/>
+        <button class="panorama__play" type="button" aria-label="Смотреть трейлер">
+          <span class="panorama__play-icon" aria-hidden="true"></span>
+        </button>
+        <iframe
+          class="panorama__video"
+          title="Трейлер «Там, где наш дом»"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
       </section>
 
       <section class="copy">
