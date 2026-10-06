@@ -144,6 +144,10 @@
       z-index: 4;
     }
 
+    .poster.is-playing {
+      cursor: default;
+    }
+
     .poster__img {
       position: absolute;
       inset: 0;
@@ -159,6 +163,7 @@
       height: 110px;
       background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
       z-index: 1;
+      pointer-events: none;
     }
 
     .poster__title {
@@ -169,6 +174,7 @@
       z-index: 2;
       width: 84%;
       height: auto;
+      pointer-events: none;
     }
 
     .poster__credits {
@@ -183,9 +189,73 @@
       text-transform: uppercase;
       color: #fff;
       font-weight: 300;
+      pointer-events: none;
     }
 
     .poster__credits b { font-weight: 700; }
+
+    .poster__play {
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      width: 64px;
+      height: 64px;
+      border: 0;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      background: rgba(17, 17, 17, 0.55);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+      display: grid;
+      place-items: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .poster__play:hover,
+    .poster__play:focus-visible {
+      transform: translate(-50%, -50%) scale(1.06);
+      background: rgba(17, 17, 17, 0.72);
+      outline: none;
+    }
+
+    .poster__play:focus-visible {
+      box-shadow: 0 0 0 2px #f974be, 0 4px 18px rgba(0,0,0,0.4);
+    }
+
+    .poster__play-icon {
+      width: 0;
+      height: 0;
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent #f2f2f2;
+    }
+
+    .poster__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: none;
+      background: #000;
+      z-index: 6;
+    }
+
+    .poster.is-playing .poster__img,
+    .poster.is-playing .poster__fade,
+    .poster.is-playing .poster__title,
+    .poster.is-playing .poster__credits,
+    .poster.is-playing .poster__play {
+      display: none;
+    }
+
+    .poster.is-playing .poster__video {
+      display: block;
+    }
 
     .brand-row {
       position: absolute;
@@ -638,7 +708,7 @@
           <img src="assets/logo_sputnik.svg" alt="Sputnik Films"/>
         </div>
 
-        <div class="poster">
+        <div class="poster" id="trailer" data-youtube-id="FbJi_J1xgzA">
           <img class="poster__img" src="assets/poster_wide.jpg" alt="Кадр из фильма «Там, где наш дом»"/>
           <div class="poster__fade" aria-hidden="true"></div>
           <img class="poster__title" src="assets/title_logo.svg" alt="Там, где наш дом · Северная Осетия"/>
@@ -647,6 +717,16 @@
             <b>sputnik films</b> в главных ролях <b>Алан Байсангуров Валерий Датиев Заур Тедеев Лейла Теблоева</b>
             режиссёры <b>Дмитрий Квашнин Владимир Тарасов Сослан Чехоев</b>
           </p>
+          <button class="poster__play" type="button" aria-label="Смотреть трейлер">
+            <span class="poster__play-icon" aria-hidden="true"></span>
+          </button>
+          <iframe
+            class="poster__video"
+            title="Трейлер «Там, где наш дом»"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
         </div>
       </section>
 
@@ -753,8 +833,8 @@
         role: "актриса, руководитель театра",
         lives: "Чем живет:",
         bio: "Создала театр в собственном доме — место, где через спектакли говорит о наболевшем, важном и самом сокровенном.",
-        front: "assets/popup_leyla_front.jpg",
-        back: "assets/popup_leyla_back.jpg",
+        front: "assets/popup_leyla_front_portrait.jpg",
+        back: "assets/popup_leyla_back_portrait.jpg",
         alt: "Лейла"
       },
       alan: {
@@ -762,8 +842,8 @@
         role: "разводчик яков",
         lives: "Чем живет:",
         bio: "В высокогорном селе Дунта восстанавливает популяцию яков, когда-то полностью истреблённых в Осетии. А сам шутит, что просто поменял «стальных яков на живых».",
-        front: "assets/popup_alan_front.jpg",
-        back: "assets/popup_alan_back.jpg",
+        front: "assets/popup_alan_front_portrait.jpg",
+        back: "assets/popup_alan_back_portrait.jpg",
         alt: "Алан"
       },
       zaur: {
@@ -771,8 +851,8 @@
         role: "фотограф, художник",
         lives: "Чем живет:",
         bio: "Снимал Тарантино, Миккельсена и Касселя, но снова и снова возвращает объектив к жителям осетинских гор — людям, в которых хочется вглядеться.",
-        front: "assets/popup_zaur_front.jpg",
-        back: "assets/popup_zaur_back.jpg",
+        front: "assets/popup_zaur_front_portrait.jpg",
+        back: "assets/popup_zaur_back_portrait.jpg",
         alt: "Заур"
       },
       mahkond: {
@@ -780,8 +860,8 @@
         role: "объединение мастеров",
         lives: "Чем живут:",
         bio: "Создают арт-объекты среди осетинских гор, соединяя современное искусство с местным ландшафтом и культурой.",
-        front: "assets/popup_mahkond_front.jpg",
-        back: "assets/popup_mahkond_back.jpg",
+        front: "assets/popup_mahkond_front_portrait.jpg",
+        back: "assets/popup_mahkond_back_portrait.jpg",
         alt: "Mah Kond"
       }
     };
@@ -825,6 +905,22 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeHero();
     });
+
+    // Trailer: preview stays until play
+    const trailer = document.getElementById("trailer");
+    const playBtn = trailer && trailer.querySelector(".poster__play");
+    const videoFrame = trailer && trailer.querySelector(".poster__video");
+    if (trailer && playBtn && videoFrame) {
+      const startTrailer = () => {
+        if (trailer.classList.contains("is-playing")) return;
+        const id = trailer.dataset.youtubeId;
+        videoFrame.src =
+          "https://www.youtube.com/embed/" + id +
+          "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+        trailer.classList.add("is-playing");
+      };
+      playBtn.addEventListener("click", startTrailer);
+    }
   </script>
   <script src="/js/analytics.js" defer></script>
 </body>
