@@ -898,21 +898,17 @@
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeHero();
     });
 
-    // Trailer on panorama preview
-    /* trailer on panorama */
+    // Trailer on panorama (preview image + play)
     const trailer = document.getElementById("trailer");
     const playBtn = trailer && trailer.querySelector(".panorama__play");
     const videoFrame = trailer && trailer.querySelector(".panorama__video");
     if (trailer && playBtn && videoFrame) {
-      const startTrailer = () => {
+      playBtn.addEventListener("click", () => {
         if (trailer.classList.contains("is-playing")) return;
         const id = trailer.dataset.youtubeId;
-        videoFrame.src =
-          "https://www.youtube.com/embed/" + id +
-          "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+        videoFrame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
         trailer.classList.add("is-playing");
-      };
-      playBtn.addEventListener("click", startTrailer);
+      });
     }
   </script>
   <script src="/js/analytics.js" defer></script>
