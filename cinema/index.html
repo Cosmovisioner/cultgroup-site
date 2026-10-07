@@ -392,7 +392,6 @@
       object-fit: cover;
       pointer-events: none;
       z-index: 3;
-      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
     }
 
     .tape--1 { left: calc(50% + 68.67px); top: calc(50% - 333.33px); transform: translate(-50%, -50%) rotate(-52.37deg); }
@@ -528,7 +527,6 @@
       height: 292px;
       object-fit: cover;
       display: block;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
     }
 
     .ticket__date {
@@ -575,13 +573,17 @@
       transform: translateX(-50%);
       font-weight: 300;
       font-size: 20px;
-      line-height: 1;
+      line-height: 0;
       color: #000;
       text-align: center;
       z-index: 2;
+      white-space: pre-wrap;
     }
 
-    .ticket__place p + p { margin-top: 0; }
+    .ticket__place p {
+      line-height: normal;
+      margin: 0;
+    }
 
     .ticket__stamp-sputnik {
       position: absolute;
@@ -591,7 +593,6 @@
       height: 38.258px;
       transform: rotate(-5.9deg);
       z-index: 2;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
     }
 
     .ticket__stamp-cult {
@@ -602,7 +603,6 @@
       height: 36.535px;
       transform: rotate(6.28deg);
       z-index: 2;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
     }
 
     .footer-note {
@@ -665,17 +665,46 @@
       height: 587px;
       flex-shrink: 0;
       overflow: hidden;
+      color-scheme: only light;
+    }
+
+    .ticket__stamp-sputnik,
+    .ticket__stamp-cult {
+      object-fit: contain;
+      display: block;
+    }
+
+    .dossier__folder-wrap {
+      position: absolute;
+      left: -38px;
+      top: 10.84px;
+      width: 455.804px;
+      height: 591.995px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .dossier__folder-rot {
+      width: 428.652px;
+      height: 571.912px;
+      transform: rotate(177.23deg);
+      position: relative;
+      overflow: hidden;
+      flex: none;
     }
 
     .dossier__folder {
       position: absolute;
-      left: -38px;
-      top: 10.84px;
-      width: 428.652px;
-      height: 571.912px;
-      transform: rotate(177.23deg);
+      left: -99.94%;
+      top: 0.02%;
+      width: 199.94%;
+      height: 99.9%;
+      max-width: none;
       object-fit: cover;
-      pointer-events: none;
+      display: block;
     }
 
     .dossier__shot {
@@ -690,10 +719,14 @@
     }
 
     .dossier__shot img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
+      max-width: none;
       object-fit: cover;
       display: block;
+      pointer-events: none;
     }
 
     .dossier__shot--back {
@@ -711,8 +744,34 @@
     }
 
     .dossier__shot--front img {
-      /* default; overridden per hero via CSS vars if needed */
-      object-position: center;
+      inset: auto;
+      object-fit: unset;
+    }
+
+    /* Figma crop: Leyla front */
+    .dossier__shot--front img.is-leyla {
+      left: -111.86%;
+      top: -15.21%;
+      width: 285.69%;
+      height: 124.47%;
+    }
+    .dossier__shot--front img.is-alan {
+      left: -31.27%;
+      top: -0.94%;
+      width: 236.89%;
+      height: 103.21%;
+    }
+    .dossier__shot--front img.is-zaur {
+      left: -91.59%;
+      top: -3.96%;
+      width: 274.6%;
+      height: 119.64%;
+    }
+    .dossier__shot--front img.is-mahkond {
+      left: -146.5%;
+      top: -2.96%;
+      width: 285.69%;
+      height: 124.47%;
     }
 
     .dossier__clip {
@@ -724,7 +783,6 @@
       transform: rotate(6.66deg);
       z-index: 3;
       object-fit: cover;
-      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
       pointer-events: none;
     }
 
@@ -735,23 +793,28 @@
       width: 286px;
       z-index: 2;
       border-collapse: collapse;
-      background: transparent;
+      border-spacing: 0;
+      background: transparent !important;
+      background-color: transparent !important;
       font-size: 14px;
       letter-spacing: -0.98px;
       line-height: normal;
       color: var(--ink);
     }
 
-    .dossier__table td {
+    .dossier__table td,
+    .dossier__table th {
       border: 1px solid var(--ink);
       padding: 5px 10px;
-      vertical-align: top;
-      background: transparent;
+      vertical-align: middle;
+      background: transparent !important;
+      background-color: transparent !important;
     }
 
     .dossier__table .bio {
       font-size: 12px;
       letter-spacing: -0.84px;
+      vertical-align: top;
     }
 
     @media (max-width: 420px) {
@@ -871,8 +934,8 @@
           <p>ТЦ «Европейский»</p>
           <p>4 этаж, 8 зал</p>
         </div>
-        <img class="ticket__stamp-sputnik" src="assets/stamp_sputnik.svg" alt="Sputnik Films"/>
-        <img class="ticket__stamp-cult" src="assets/stamp_cult.svg" alt="Cult Group"/>
+        <img class="ticket__stamp-sputnik" src="assets/stamp_sputnik.png" alt="Sputnik Films"/>
+        <img class="ticket__stamp-cult" src="assets/stamp_cult.png" alt="Cult Group"/>
       </section>
 
       <p class="footer-note">
@@ -887,7 +950,11 @@
       <img src="assets/close.svg" alt=""/>
     </button>
     <article class="dossier">
-      <img class="dossier__folder" src="assets/popup_folder.png" alt="" aria-hidden="true"/>
+      <div class="dossier__folder-wrap" aria-hidden="true">
+        <div class="dossier__folder-rot">
+          <img class="dossier__folder" src="assets/popup_folder.png" alt=""/>
+        </div>
+      </div>
       <div class="dossier__shot dossier__shot--back">
         <img id="modal-back" src="" alt=""/>
       </div>
@@ -919,7 +986,7 @@
         bio: "Создала театр в собственном доме — место, где через спектакли говорит о наболевшем, важном и самом сокровенном.",
         front: "assets/popup_leyla_front.jpg",
         back: "assets/popup_leyla_back.jpg",
-        frontStyle: "object-position: 30% 40%; transform: scale(1.24); transform-origin: 40% 40%;",
+        cropClass: "is-leyla",
         alt: "Лейла"
       },
       alan: {
@@ -929,7 +996,7 @@
         bio: "В высокогорном селе Дунта восстанавливает популяцию яков, когда-то полностью истреблённых в Осетии. А сам шутит, что просто поменял «стальных яков на живых».",
         front: "assets/popup_alan_front.jpg",
         back: "assets/popup_alan_back.jpg",
-        frontStyle: "object-position: center 20%;",
+        cropClass: "is-alan",
         alt: "Алан"
       },
       zaur: {
@@ -939,7 +1006,7 @@
         bio: "Снимал Тарантино, Миккельсена и Касселя, но снова и снова возвращает объектив к жителям осетинских гор — людям, в которых хочется вглядеться.",
         front: "assets/popup_zaur_front.jpg",
         back: "assets/popup_zaur_back.jpg",
-        frontStyle: "object-position: 55% 30%;",
+        cropClass: "is-zaur",
         alt: "Заур"
       },
       mahkond: {
@@ -949,7 +1016,7 @@
         bio: "Создают арт-объекты среди осетинских гор, соединяя современное искусство с местным ландшафтом и культурой.",
         front: "assets/popup_mahkond_front.jpg",
         back: "assets/popup_mahkond_back.jpg",
-        frontStyle: "object-position: 60% 35%;",
+        cropClass: "is-mahkond",
         alt: "Mah Kond"
       }
     };
@@ -968,9 +1035,11 @@
       const back = document.getElementById("modal-back");
       front.src = h.front;
       front.alt = h.alt;
-      front.style.cssText = h.frontStyle || "";
+      front.className = h.cropClass || "";
+      front.style.cssText = "";
       back.src = h.back;
       back.alt = "";
+      back.className = "";
       back.style.cssText = "";
       modal.hidden = false;
       modal.classList.add("is-open");
