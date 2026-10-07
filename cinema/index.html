@@ -20,6 +20,12 @@
       font-weight: 100 800;
       font-display: swap;
     }
+    @font-face {
+      font-family: "Disruptors Script";
+      src: url("assets/DisruptorsScript.otf") format("opentype");
+      font-weight: 400;
+      font-display: swap;
+    }
 
     :root {
       --page: 390px;
@@ -28,7 +34,7 @@
       --muted: #8b8b8b;
       --script: #590e27;
       --mono: "JetBrains Mono", ui-monospace, monospace;
-      --hand: "Segoe Script", "Apple Chancery", "Snell Roundhand", "Brush Script MT", cursive;
+      --hand: "Disruptors Script", cursive;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,7 +60,6 @@
       z-index: 0;
       pointer-events: none;
       background: #151515 url("assets/bg.jpg") center / cover no-repeat;
-      opacity: 0.55;
     }
 
     .shell {
@@ -68,148 +73,213 @@
     .page {
       width: min(100%, var(--page));
       min-height: 100dvh;
-      padding: 10px 0 28px;
+      padding: 10px 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 45px;
     }
 
-    /* ——— Hero collage ——— */
+    /* ——— Hero collage (Figma 1:13, 436×538) ——— */
     .hero {
       position: relative;
-      width: 100%;
-      height: 520px;
+      width: 436px;
+      max-width: 112%;
+      height: 538px;
       overflow: hidden;
       flex-shrink: 0;
     }
 
-    .paper {
-      position: absolute;
-      background: url("assets/paper_lined.jpg") center / cover no-repeat;
-      box-shadow: 1px 1px 4px rgba(0,0,0,0.35);
-      opacity: 0.85;
-    }
-
-    .paper--back-r {
-      width: 210px;
-      height: 270px;
-      left: 58%;
-      top: 18%;
-      transform: translateX(-50%) rotate(8.5deg);
-      opacity: 0.7;
-    }
-
-    .paper--back-l {
-      width: 200px;
-      height: 280px;
-      left: 32%;
-      top: 28%;
-      transform: translateX(-50%) rotate(-15deg);
-      opacity: 0.7;
-    }
-
-    .paper--top {
-      width: 280px;
-      height: 130px;
-      left: 50%;
-      top: 6%;
-      transform: translateX(-50%) rotate(180deg);
-      opacity: 0.95;
-      z-index: 2;
-    }
-
-    .clip {
-      position: absolute;
-      width: 72px;
-      height: auto;
-      left: 50%;
-      top: 2%;
-      transform: translateX(-50%);
-      z-index: 6;
-      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
-      pointer-events: none;
-    }
-
-    .poster {
+    .abs-c {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 280px;
-      height: 400px;
-      transform: translate(-50%, -52%);
-      background: #111;
-      box-shadow: 2px 4px 14px rgba(0,0,0,0.55);
-      overflow: hidden;
-      z-index: 4;
+      transform: translate(-50%, -50%);
     }
 
-    .poster__img {
+    .hero__paper {
       position: absolute;
-      inset: 0;
+      background: url("assets/paper_lined.jpg") center / cover no-repeat;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+    }
+
+    .hero__paper--a {
+      width: 256.913px;
+      height: 276.576px;
+      left: calc(50% + 60.65px);
+      top: calc(50% - 10.1px);
+      transform: translate(-50%, -50%) rotate(8.58deg);
+      opacity: 0.7;
+    }
+
+    .hero__paper--b {
+      width: 245.747px;
+      height: 340.113px;
+      left: calc(50% - 59.25px);
+      top: calc(50% + 25.14px);
+      transform: translate(-50%, -50%) rotate(-15deg);
+      opacity: 0.7;
+      background-image: url("assets/paper_lined.jpg");
+      background-size: 104.64% 107.02%;
+      background-position: -4.61% -7.02%;
+    }
+
+    .hero__sheet {
+      position: absolute;
+      width: 309.449px;
+      height: 420.128px;
+      left: calc(50% - 39.3px);
+      top: calc(50% - 31.42px);
+      transform: translate(-50%, -50%) rotate(-5.86deg);
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .hero__sheet img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 40%;
+      display: block;
     }
 
-    .poster__fade {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 110px;
-      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
-      z-index: 1;
+    .hero__sheet--br {
+      width: 234.665px;
+      height: 318.596px;
+      left: calc(50% + 82.25px);
+      top: calc(50% + 98.94px);
+      transform: translate(-50%, -50%) rotate(5.57deg);
     }
 
-    .poster__title {
+    .hero__clip {
       position: absolute;
-      left: 8%;
-      right: 8%;
-      bottom: 11%;
-      z-index: 2;
-      width: 84%;
+      width: 310px;
+      height: 210px;
+      object-fit: cover;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+      pointer-events: none;
+    }
+
+    .hero__clip--top {
+      left: calc(50% + 32px);
+      top: calc(50% - 146px);
+      transform: translate(-50%, -50%);
+    }
+
+    .hero__clip--bot {
+      left: calc(50% - 38px);
+      top: calc(50% + 146px);
+      transform: translate(-50%, -50%);
+    }
+
+    .hero__poster {
+      position: absolute;
+      left: calc(50% + 0.2px);
+      top: calc(50% - 6.5px);
+      width: 304.407px;
+      height: 431px;
+      transform: translate(-50%, -50%);
+      background: #111;
+      overflow: hidden;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+      z-index: 4;
+    }
+
+    .hero__poster-photo {
+      position: absolute;
+      left: -230.91px;
+      top: -0.42px;
+      width: 766.222px;
+      height: 431.416px;
+      object-fit: cover;
+    }
+
+    .hero__poster-fade {
+      position: absolute;
+      left: 0;
+      top: 325.64px;
+      width: 304.407px;
+      height: 105.356px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8));
+      pointer-events: none;
+    }
+
+    .hero__poster-title {
+      position: absolute;
+      left: 8.34%;
+      right: 8.34%;
+      top: 73.98%;
+      bottom: 9.44%;
+      width: auto;
       height: auto;
+      pointer-events: none;
     }
 
-    .poster__credits {
+    .hero__poster-credits {
       position: absolute;
-      left: 6%;
-      right: 6%;
-      bottom: 3%;
-      z-index: 2;
-      font-size: 3.6px;
+      left: 50%;
+      top: 397.77px;
+      width: 256.726px;
+      transform: translateX(-50%);
+      font-size: 3.748px;
       line-height: 1.05;
       text-align: center;
       text-transform: uppercase;
       color: #fff;
       font-weight: 300;
+      pointer-events: none;
     }
 
-    .poster__credits b { font-weight: 700; }
+    .hero__poster-credits b { font-weight: 700; }
 
-    .brand-row {
+    .hero__bar {
       position: absolute;
-      left: 50%;
-      top: 11%;
-      transform: translateX(-50%);
+      left: calc(50% - 2.32px);
+      top: calc(50% - 168.5px);
+      width: 309.366px;
+      height: 151px;
+      transform: translate(-50%, -50%) rotate(180deg);
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
       z-index: 5;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      width: 250px;
-      justify-content: center;
+      overflow: hidden;
     }
 
-    .brand-row img {
-      height: 18px;
-      width: auto;
+    .hero__bar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
     }
 
-    .brand-row .mark {
-      height: 56px;
-      margin-top: -28px;
+    .hero__logo-cult {
+      position: absolute;
+      left: calc(50% - 38px);
+      top: calc(50% - 166.5px);
+      width: 50px;
+      height: 21px;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+    }
+
+    .hero__logo-sputnik {
+      position: absolute;
+      left: calc(50% + 42.35px);
+      top: calc(50% - 168.99px);
+      width: 70.7px;
+      height: 22.016px;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+    }
+
+    .hero__binder {
+      position: absolute;
+      left: calc(50% + 0.02px);
+      top: calc(50% - 231.5px);
+      width: 76.041px;
+      height: 75px;
+      transform: translate(-50%, -50%);
+      z-index: 7;
+      object-fit: cover;
+      pointer-events: none;
     }
 
     /* ——— Copy ——— */
@@ -218,47 +288,53 @@
       max-width: calc(100% - 40px);
       font-weight: 300;
       font-size: 16px;
-      line-height: 1.05;
+      line-height: 1;
       color: var(--paper);
     }
 
     .copy p + p { margin-top: 20px; }
 
-    /* ——— Heroes collage ——— */
-    .heroes {
+    /* ——— Folder collage (Figma 1:44, h 762) ——— */
+    .folder-block {
       position: relative;
       width: 100%;
-      height: 720px;
+      height: 762px;
       overflow: hidden;
       flex-shrink: 0;
     }
 
-    .heroes__folder {
+    .folder-block__bg {
       position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 560px;
-      height: 780px;
-      transform: translate(-50%, -50%) rotate(-3deg);
+      left: calc(50% - 14.78px);
+      top: calc(50% + 1.31px);
+      width: 759.773px;
+      height: 506.515px;
+      transform: translate(-50%, -50%) rotate(-78.86deg);
       object-fit: cover;
       pointer-events: none;
-      border-radius: 2px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
     }
 
     .polaroid {
       position: absolute;
-      width: 158px;
-      padding: 7px 7px 26px;
+      width: 177.18px;
+      height: 228.748px;
+      padding: 7px;
       background: var(--paper);
-      box-shadow: 1px 2px 6px rgba(0,0,0,0.35);
       border: 0;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
       cursor: pointer;
       appearance: none;
       -webkit-appearance: none;
       z-index: 2;
-      transition: filter 0.2s ease, box-shadow 0.2s ease;
       line-height: 0;
+      overflow: hidden;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .polaroid:focus-visible {
@@ -266,99 +342,109 @@
       outline-offset: 3px;
     }
 
-    .polaroid:active { filter: brightness(0.96); }
-
-    .polaroid img {
-      width: 144px;
-      height: 168px;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .polaroid--leyla {
-      left: calc(50% + 18px);
-      top: calc(50% - 318px);
-      transform: rotate(0.5deg);
-    }
-
+    /* mid-left Alan / horse */
     .polaroid--alan {
-      left: calc(50% - 198px);
-      top: calc(50% - 200px);
-      transform: rotate(-4.5deg);
+      left: calc(50% - 117.06px);
+      top: calc(50% - 93.32px);
+      transform: translate(-50%, -50%) rotate(-4.52deg);
     }
+    .polaroid--alan img { object-position: center; }
 
+    /* bottom-right Zaur */
     .polaroid--zaur {
-      left: calc(50% + 28px);
-      top: calc(50% - 28px);
-      transform: rotate(2.8deg);
+      left: calc(50% + 120.08px);
+      top: calc(50% + 86.82px);
+      transform: translate(-50%, -50%) rotate(2.79deg);
     }
 
+    /* bottom-left Mah Kond */
     .polaroid--mahkond {
-      left: calc(50% - 178px);
-      top: calc(50% + 92px);
-      transform: rotate(-2.8deg);
+      left: calc(50% - 96.58px);
+      top: calc(50% + 205.11px);
+      transform: translate(-50%, -50%) rotate(-2.75deg);
+    }
+    .polaroid--mahkond img {
+      width: 229.92%;
+      max-width: none;
+      height: 100%;
+      margin-left: -105.32%;
+      object-fit: cover;
+    }
+
+    /* top-right Leyla */
+    .polaroid--leyla {
+      left: calc(50% + 95.64px);
+      top: calc(50% - 210.8px);
+      transform: translate(-50%, -50%) rotate(0.54deg);
+    }
+    .polaroid--leyla img {
+      width: 229.52%;
+      max-width: none;
+      height: 100%;
+      margin-left: -60.54%;
+      object-fit: cover;
     }
 
     .tape {
       position: absolute;
-      width: 78px;
-      height: 22px;
-      background: rgba(255,255,255,0.55);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.12);
-      z-index: 3;
+      width: 85.091px;
+      height: 85.091px;
+      object-fit: cover;
       pointer-events: none;
+      z-index: 3;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
     }
 
-    .tape--1 { left: calc(50% + 48px); top: calc(50% - 348px); transform: rotate(-52deg); }
-    .tape--2 { left: calc(50% - 168px); top: calc(50% - 228px); transform: rotate(121deg); }
-    .tape--3 { left: calc(50% + 98px); top: calc(50% - 58px); transform: rotate(117deg); }
-    .tape--4 { left: calc(50% - 138px); top: calc(50% + 62px); transform: rotate(-57deg); }
-    .tape--5 { left: calc(50% + 88px); top: calc(50% + 168px); transform: rotate(122deg); }
-    .tape--6 { left: calc(50% - 128px); top: calc(50% + 278px); transform: rotate(-50deg); }
+    .tape--1 { left: calc(50% + 68.67px); top: calc(50% - 333.33px); transform: translate(-50%, -50%) rotate(-52.37deg); }
+    .tape--2 { left: calc(50% + 131.33px); top: calc(50% - 89.67px); transform: translate(-50%, -50%) rotate(117.34deg); }
+    .tape--3 { left: calc(50% - 136.63px); top: calc(50% - 207.64px); transform: translate(-50%, -50%) rotate(120.94deg); }
+    .tape--4 { left: calc(50% - 99.83px); top: calc(50% + 91.17px); transform: translate(-50%, -50%) rotate(124.54deg); }
+    .tape--5 { left: calc(50% + 112.7px); top: calc(50% + 205.7px); transform: translate(-50%, -50%) rotate(122.31deg); }
+    .tape--6 { left: calc(50% + 125.92px); top: calc(50% - 32.08px); transform: translate(-50%, -50%) rotate(-50.2deg); }
+    .tape--7 { left: calc(50% - 111.06px); top: calc(50% + 22.94px); transform: translate(-50%, -50%) rotate(-56.59deg); }
+    .tape--8 { left: calc(50% - 100.06px); top: calc(50% + 320.94px); transform: translate(-50%, -50%) rotate(-50.04deg); }
 
     .note {
       position: absolute;
       z-index: 4;
       font-family: var(--hand);
       color: var(--script);
-      font-size: 34px;
-      line-height: 0.7;
+      font-size: 36px;
+      line-height: 0.6;
       font-weight: 400;
       pointer-events: none;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     }
 
     .note--heroes {
-      left: calc(50% - 168px);
-      top: calc(50% - 330px);
-      width: 140px;
-      transform: rotate(-2.6deg);
+      left: calc(50% - 151px);
+      top: calc(50% - 307px);
+      width: 138px;
+      transform: rotate(-2.61deg);
     }
 
     .note--unite {
-      left: calc(50% + 8px);
-      top: calc(50% + 210px);
-      width: 120px;
-      transform: rotate(-2.6deg);
+      left: calc(50% + 19px);
+      top: calc(50% + 239px);
+      width: 114.163px;
+      transform: rotate(-2.61deg);
     }
 
     .note-arrow {
       position: absolute;
-      left: calc(50% - 58px);
-      top: calc(50% - 280px);
-      width: 38px;
-      height: auto;
+      left: calc(50% - 39.95px);
+      top: calc(50% - 262.66px);
+      width: 37.466px;
+      height: 20.462px;
+      transform: translate(-50%, -50%) rotate(60.9deg) scaleY(-1);
       z-index: 4;
-      transform: rotate(61deg) scaleY(-1);
       pointer-events: none;
-      filter: brightness(0) saturate(100%) invert(12%) sepia(54%) saturate(2500%) hue-rotate(325deg);
     }
 
-    /* ——— Panorama / trailer ——— */
+    /* ——— Panorama / trailer (Figma 1:61) ——— */
     .panorama {
       position: relative;
-      width: min(100%, 392px);
+      width: 392px;
+      max-width: 100%;
       height: 222px;
       overflow: hidden;
       flex-shrink: 0;
@@ -366,11 +452,13 @@
     }
 
     .panorama__img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transform: scale(1.02);
+      /* Figma: image is 222×392 rotated -90° → landscape fill */
+      transform: rotate(0deg);
     }
 
     .panorama__play {
@@ -389,7 +477,6 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.4);
       display: grid;
       place-items: center;
-      transition: transform 0.2s ease, background 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -398,10 +485,6 @@
       transform: translate(-50%, -50%) scale(1.06);
       background: rgba(17, 17, 17, 0.72);
       outline: none;
-    }
-
-    .panorama__play:focus-visible {
-      box-shadow: 0 0 0 2px #f974be, 0 4px 18px rgba(0,0,0,0.4);
     }
 
     .panorama__play-icon {
@@ -425,98 +508,101 @@
     }
 
     .panorama.is-playing .panorama__img,
-    .panorama.is-playing .panorama__play {
-      display: none;
-    }
+    .panorama.is-playing .panorama__play { display: none; }
+    .panorama.is-playing .panorama__video { display: block; }
 
-    .panorama.is-playing .panorama__video {
-      display: block;
-    }
-
-    /* ——— Ticket ——— */
-    .ticket-wrap {
+    /* ——— Ticket (Figma 1:63, 355×304.8) ——— */
+    .ticket {
       position: relative;
       width: 355px;
       max-width: calc(100% - 24px);
-      height: 300px;
+      height: 304.817px;
       flex-shrink: 0;
     }
 
-    .ticket-wrap__paper {
+    .ticket__paper {
       position: absolute;
-      inset: 8px 0 0;
-      width: 100%;
-      height: auto;
+      left: 0;
+      top: 8.4px;
+      width: 355px;
+      height: 292px;
+      object-fit: cover;
       display: block;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
     }
 
-    .ticket-wrap__body {
+    .ticket__date {
       position: absolute;
-      inset: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 88px 28px 48px;
-      color: var(--ink);
-      text-align: center;
+      left: calc(50% - 106.5px);
+      top: 96px;
       font-weight: 300;
       font-size: 20px;
-      line-height: 1.05;
+      line-height: 1;
+      color: #000;
+      white-space: nowrap;
+      z-index: 2;
     }
 
-    .ticket-wrap__date {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    .ticket-wrap__circle {
+    .ticket__circle {
       position: absolute;
-      left: -10px;
-      top: -10px;
-      width: 155px;
-      height: auto;
+      left: 50px;
+      top: 85px;
+      width: 151px;
+      height: 40px;
+      z-index: 1;
       pointer-events: none;
     }
 
-    .ticket-wrap__venue {
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.04em;
-      margin-bottom: 10px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .ticket-wrap__venue:hover { border-bottom-color: var(--ink); }
-
-    .ticket-wrap__place {
+    .ticket__venue {
+      position: absolute;
+      left: 56px;
+      top: 131px;
+      font-weight: 300;
       font-size: 20px;
-      line-height: 1.1;
+      letter-spacing: -1.4px;
+      line-height: normal;
+      color: #000;
+      text-decoration: none;
+      white-space: nowrap;
+      z-index: 2;
     }
 
-    .stamp-sputnik {
+    .ticket__place {
       position: absolute;
-      right: 12px;
+      left: 50%;
+      top: 168px;
+      width: 245px;
+      transform: translateX(-50%);
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 1;
+      color: #000;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .ticket__place p + p { margin-top: 0; }
+
+    .ticket__stamp-sputnik {
+      position: absolute;
+      left: 223px;
       top: 0;
-      width: 118px;
-      height: auto;
-      z-index: 2;
+      width: 122.856px;
+      height: 38.258px;
       transform: rotate(-5.9deg);
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+      z-index: 2;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
     }
 
-    .stamp-cult {
+    .ticket__stamp-cult {
       position: absolute;
-      left: 52px;
-      bottom: 8px;
-      width: 88px;
-      height: auto;
+      left: 59px;
+      top: 259px;
+      width: 86.929px;
+      height: 36.535px;
+      transform: rotate(6.28deg);
       z-index: 2;
-      transform: rotate(6.3deg);
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
     }
 
     .footer-note {
@@ -525,8 +611,8 @@
       text-align: center;
       color: var(--muted);
       font-size: 16px;
-      letter-spacing: -0.04em;
-      line-height: 1.3;
+      letter-spacing: -1.12px;
+      line-height: normal;
       font-weight: 400;
     }
 
@@ -536,7 +622,7 @@
       text-underline-offset: 3px;
     }
 
-    /* ——— Modal ——— */
+    /* ——— Modal / dossier (Figma 2:3) ——— */
     .modal {
       position: fixed;
       inset: 0;
@@ -545,8 +631,7 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      background: rgba(21,21,21,0.72);
-      backdrop-filter: blur(2px);
+      background: rgba(21,21,21,0.4);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -555,131 +640,127 @@
 
     .modal__close {
       position: fixed;
-      top: max(16px, env(safe-area-inset-top));
-      right: 16px;
-      width: 36px;
-      height: 36px;
+      top: max(17px, env(safe-area-inset-top));
+      right: 14px;
+      width: 17px;
+      height: 17px;
       border: 0;
+      padding: 0;
       background: transparent;
       cursor: pointer;
       z-index: 3;
-      color: #cfcfcf;
-      font-size: 28px;
-      line-height: 1;
+      line-height: 0;
+    }
+
+    .modal__close img {
+      width: 17px;
+      height: 17px;
+      display: block;
     }
 
     .dossier {
-      --manila: #e8d9b8;
       position: relative;
-      width: min(320px, calc(100% - 8px));
-      margin: 24px auto;
-      background-color: var(--manila);
-      background-image: url("assets/manila.jpg");
-      background-size: cover;
-      background-position: center;
-      border-radius: 6px;
-      padding: 36px 24px 22px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-      color: var(--ink);
-      overflow: visible;
+      width: 390px;
+      max-width: 100%;
+      height: 587px;
       flex-shrink: 0;
+      overflow: hidden;
     }
 
-    .dossier::before {
-      content: "";
+    .dossier__folder {
       position: absolute;
-      left: -14px;
-      top: 36%;
-      width: 18px;
-      height: 70px;
-      background: var(--manila);
-      border-radius: 8px 0 0 8px;
-      box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
-    }
-
-    .dossier__photos {
-      position: relative;
-      height: 280px;
-      margin: 0 auto 18px;
-      width: 220px;
+      left: -38px;
+      top: 10.84px;
+      width: 428.652px;
+      height: 571.912px;
+      transform: rotate(177.23deg);
+      object-fit: cover;
+      pointer-events: none;
     }
 
     .dossier__shot {
       position: absolute;
-      width: 168px;
-      padding: 7px 7px 22px;
+      width: 200.585px;
+      height: 258.964px;
+      padding: 7px;
       background: var(--paper);
-      box-shadow: 1px 2px 6px rgba(0,0,0,0.3);
-      line-height: 0;
+      box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
       overflow: hidden;
+      line-height: 0;
     }
 
     .dossier__shot img {
-      width: 154px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
       display: block;
     }
 
     .dossier__shot--back {
-      left: 36px;
-      top: 8px;
-      transform: rotate(4.5deg);
+      left: 77.28px;
+      top: 69.45px;
+      transform: rotate(4.48deg);
       z-index: 1;
     }
 
     .dossier__shot--front {
-      left: 12px;
-      top: 22px;
-      transform: rotate(-4.5deg);
+      left: 77.21px;
+      top: 66.4px;
+      transform: rotate(-4.51deg);
       z-index: 2;
+    }
+
+    .dossier__shot--front img {
+      /* default; overridden per hero via CSS vars if needed */
+      object-position: center;
     }
 
     .dossier__clip {
       position: absolute;
-      left: 58px;
-      top: 0;
-      width: 64px;
-      height: auto;
+      left: 47px;
+      top: 22px;
+      width: 106.289px;
+      height: 106.289px;
+      transform: rotate(6.66deg);
       z-index: 3;
-      transform: rotate(6.5deg);
+      object-fit: cover;
       filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
       pointer-events: none;
     }
 
     .dossier__table {
-      position: relative;
+      position: absolute;
+      left: 63px;
+      top: 377px;
+      width: 286px;
       z-index: 2;
-      width: 100%;
       border-collapse: collapse;
-      background: rgba(232, 217, 184, 0.92);
+      background: transparent;
       font-size: 14px;
-      letter-spacing: -0.05em;
-      line-height: 1.3;
+      letter-spacing: -0.98px;
+      line-height: normal;
+      color: var(--ink);
     }
 
     .dossier__table td {
       border: 1px solid var(--ink);
-      padding: 7px 10px;
+      padding: 5px 10px;
       vertical-align: top;
       background: transparent;
     }
 
-    .dossier__table .name {
-      white-space: nowrap;
-      font-weight: 500;
-    }
-
-    .dossier__table .role { width: 62%; }
     .dossier__table .bio {
       font-size: 12px;
-      letter-spacing: -0.03em;
-      line-height: 1.35;
+      letter-spacing: -0.84px;
     }
 
-    @media (min-width: 480px) {
-      .page { padding-top: 20px; }
+    @media (max-width: 420px) {
+      .hero {
+        width: 100vw;
+        height: min(538px, 138vw);
+      }
+      .panorama { width: 100%; }
+      .ticket { width: min(355px, calc(100% - 16px)); }
     }
   </style>
 </head>
@@ -689,27 +770,37 @@
   <div class="shell">
     <main class="page">
       <section class="hero" aria-label="Постер фильма">
-        <div class="paper paper--back-r" aria-hidden="true"></div>
-        <div class="paper paper--back-l" aria-hidden="true"></div>
-        <div class="paper paper--top" aria-hidden="true"></div>
-        <img class="clip" src="assets/clip.png" alt="" aria-hidden="true"/>
-
-        <div class="brand-row" aria-hidden="true">
-          <img src="assets/logo_cult.svg" alt="Cult Group"/>
-          <img class="mark" src="assets/logo_sputnik_mark.png" alt=""/>
-          <img src="assets/logo_sputnik.svg" alt="Sputnik Films"/>
+        <div class="hero__paper hero__paper--a" aria-hidden="true"></div>
+        <div class="hero__sheet">
+          <img src="assets/paper_sheet.jpg" alt=""/>
         </div>
+        <div class="hero__sheet hero__sheet--br">
+          <img src="assets/paper_sheet.jpg" alt=""/>
+        </div>
+        <img class="hero__clip hero__clip--top" src="assets/clip.png" alt="" aria-hidden="true"/>
+        <img class="hero__clip hero__clip--bot" src="assets/clip.png" alt="" aria-hidden="true"/>
+        <div class="hero__paper hero__paper--b" aria-hidden="true"></div>
 
-        <div class="poster">
-          <img class="poster__img" src="assets/poster_wide.jpg" alt="Кадр из фильма «Там, где наш дом»"/>
-          <div class="poster__fade" aria-hidden="true"></div>
-          <img class="poster__title" src="assets/title_logo.svg" alt="Там, где наш дом · Северная Осетия"/>
-          <p class="poster__credits" aria-hidden="true">
-            <b>ФПРК</b> координатор Юлия Капитонова · ведущий продюсер Ольга Филонова ·
-            <b>sputnik films</b> в главных ролях <b>Алан Байсангуров Валерий Датиев Заур Тедеев Лейла Теблоева</b>
-            режиссёры <b>Дмитрий Квашнин Владимир Тарасов Сослан Чехоев</b>
+        <div class="hero__poster">
+          <img class="hero__poster-photo" src="assets/poster_photo.jpg" alt="Кадр из фильма «Там, где наш дом»"/>
+          <div class="hero__poster-fade" aria-hidden="true"></div>
+          <img class="hero__poster-title" src="assets/title_logo.svg" alt="Там, где наш дом · Северная Осетия"/>
+          <p class="hero__poster-credits" aria-hidden="true">
+            <b>ФПРК</b> координатор Юлия Капитонова Ведущий продюсер Ольга Филонова Генеральный продюсер Элла Тухарели Исполнительный директор Сергей Шкилев Председатель Совета Лариса Солоницына
+            <b> sputnik films</b> в главных ролях <b>Алан Байсангуров Валерий Датиев Заур Тедеев Лейла Теблоева Артур Хатагов Марат Макиев Артур Бизиков Арсен Айларов Олег Кочиев</b>
+            режиссеры <b>Дмитрий Квашнин Владимир Тарасов Сослан Чехоев</b>
+            исполнительный продюсер <b>Сергей Клейн</b>
+            Оператор-постановщик <b>Сергей Меньшенин</b>
+            композиторы <b>Аслан Тускаев Олег Саксонов Ильяс Бтикеев</b>
           </p>
         </div>
+
+        <div class="hero__bar" aria-hidden="true">
+          <img src="assets/logo_bar_paper.png" alt=""/>
+        </div>
+        <img class="hero__logo-cult" src="assets/logo_cult_bar.svg" alt="Cult Group"/>
+        <img class="hero__logo-sputnik" src="assets/logo_sputnik_bar.svg" alt="Sputnik Films"/>
+        <img class="hero__binder" src="assets/binder_mark.png" alt="" aria-hidden="true"/>
       </section>
 
       <section class="copy">
@@ -719,31 +810,33 @@
         <p>Вы тоже можете познакомиться с&nbsp;героями немного ближе.</p>
       </section>
 
-      <section class="heroes" aria-label="Герои фильма">
-        <img class="heroes__folder" src="assets/manila.jpg" alt="" aria-hidden="true"/>
+      <section class="folder-block" aria-label="Герои фильма">
+        <img class="folder-block__bg" src="assets/folder.png" alt="" aria-hidden="true"/>
 
-        <span class="tape tape--1" aria-hidden="true"></span>
-        <span class="tape tape--2" aria-hidden="true"></span>
-        <span class="tape tape--3" aria-hidden="true"></span>
-        <span class="tape tape--4" aria-hidden="true"></span>
-        <span class="tape tape--5" aria-hidden="true"></span>
-        <span class="tape tape--6" aria-hidden="true"></span>
+        <img class="tape tape--1" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--2" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--3" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--4" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--5" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--6" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--7" src="assets/tape.png" alt="" aria-hidden="true"/>
+        <img class="tape tape--8" src="assets/tape.png" alt="" aria-hidden="true"/>
 
         <p class="note note--heroes">узнать героев</p>
         <img class="note-arrow" src="assets/arrow.svg" alt="" aria-hidden="true"/>
-        <p class="note note--unite">что их<br/>объединяет?</p>
+        <p class="note note--unite">что их<br/> объединяет?</p>
 
         <button class="polaroid polaroid--leyla" type="button" data-hero="leyla" aria-label="Открыть карточку: Лейла">
-          <img src="assets/polaroid_a_portrait.jpg" alt="Лейла"/>
+          <img src="assets/polaroid_leyla.jpg" alt="Лейла"/>
         </button>
         <button class="polaroid polaroid--alan" type="button" data-hero="alan" aria-label="Открыть карточку: Алан">
-          <img src="assets/polaroid_a2_portrait.jpg" alt="Алан"/>
+          <img src="assets/polaroid_alan.jpg" alt="Алан"/>
         </button>
         <button class="polaroid polaroid--zaur" type="button" data-hero="zaur" aria-label="Открыть карточку: Заур">
-          <img src="assets/polaroid_b_portrait.jpg" alt="Заур"/>
+          <img src="assets/polaroid_zaur.jpg" alt="Заур"/>
         </button>
         <button class="polaroid polaroid--mahkond" type="button" data-hero="mahkond" aria-label="Открыть карточку: Mah Kond">
-          <img src="assets/polaroid_c_portrait.jpg" alt="Mah Kond"/>
+          <img src="assets/polaroid_mahkond.jpg" alt="Mah Kond"/>
         </button>
       </section>
 
@@ -766,22 +859,20 @@
         <p>16 октября собираемся на закрытом показе фильма «Там, где наш дом: Северная Осетия». Будем рады провести этот вечер вместе.</p>
       </section>
 
-      <section class="ticket-wrap" aria-label="Когда и где">
-        <img class="stamp-sputnik" src="assets/stamp_sputnik.svg" alt="Sputnik Films"/>
-        <img class="ticket-wrap__paper" src="assets/ticket.png" alt=""/>
-        <div class="ticket-wrap__body">
-          <p class="ticket-wrap__date">
-            <img class="ticket-wrap__circle" src="assets/circle_red.svg" alt="" aria-hidden="true"/>
-            16 октября | 19:00
-          </p>
-          <a class="ticket-wrap__venue"
-             href="https://yandex.ru/profile/147087959441?lang=ru"
-             target="_blank" rel="noopener noreferrer">
-            Синема Парк Европейский
-          </a>
-          <p class="ticket-wrap__place">м. Киевская<br/>ТЦ «Европейский»<br/>4 этаж, 8 зал</p>
+      <section class="ticket" aria-label="Когда и где">
+        <img class="ticket__paper" src="assets/ticket_paper.png" alt=""/>
+        <img class="ticket__circle" src="assets/circle_red.svg" alt="" aria-hidden="true"/>
+        <p class="ticket__date">16 октября | 19:00</p>
+        <a class="ticket__venue"
+           href="https://yandex.ru/profile/147087959441?lang=ru&amp;utm_source=copy_link&amp;utm_medium=social&amp;utm_campaign=share"
+           target="_blank" rel="noopener noreferrer">Синема Парк Европейский</a>
+        <div class="ticket__place">
+          <p>м. Киевская</p>
+          <p>ТЦ «Европейский»</p>
+          <p>4 этаж, 8 зал</p>
         </div>
-        <img class="stamp-cult" src="assets/stamp_cult.svg" alt="Cult Group"/>
+        <img class="ticket__stamp-sputnik" src="assets/stamp_sputnik.svg" alt="Sputnik Films"/>
+        <img class="ticket__stamp-cult" src="assets/stamp_cult.svg" alt="Cult Group"/>
       </section>
 
       <p class="footer-note">
@@ -792,21 +883,22 @@
   </div>
 
   <div class="modal" id="hero-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" hidden>
-    <button class="modal__close" type="button" aria-label="Закрыть">×</button>
+    <button class="modal__close" type="button" aria-label="Закрыть">
+      <img src="assets/close.svg" alt=""/>
+    </button>
     <article class="dossier">
-      <div class="dossier__photos">
-        <div class="dossier__shot dossier__shot--back">
-          <img id="modal-back" src="" alt=""/>
-        </div>
-        <div class="dossier__shot dossier__shot--front">
-          <img id="modal-front" src="" alt=""/>
-        </div>
-        <img class="dossier__clip" src="assets/paperclip.png" alt="" aria-hidden="true"/>
+      <img class="dossier__folder" src="assets/popup_folder.png" alt="" aria-hidden="true"/>
+      <div class="dossier__shot dossier__shot--back">
+        <img id="modal-back" src="" alt=""/>
       </div>
+      <div class="dossier__shot dossier__shot--front">
+        <img id="modal-front" src="" alt=""/>
+      </div>
+      <img class="dossier__clip" src="assets/paperclip.png" alt="" aria-hidden="true"/>
       <table class="dossier__table">
         <tr>
-          <td class="name" id="modal-name"></td>
-          <td class="role" id="modal-role"></td>
+          <td id="modal-name"></td>
+          <td id="modal-role"></td>
         </tr>
         <tr>
           <td colspan="2" id="modal-lives-label">Чем живет:</td>
@@ -825,8 +917,9 @@
         role: "актриса, руководитель театра",
         lives: "Чем живет:",
         bio: "Создала театр в собственном доме — место, где через спектакли говорит о наболевшем, важном и самом сокровенном.",
-        front: "assets/popup_leyla_front_portrait.jpg",
-        back: "assets/popup_leyla_back_portrait.jpg",
+        front: "assets/popup_leyla_front.jpg",
+        back: "assets/popup_leyla_back.jpg",
+        frontStyle: "object-position: 30% 40%; transform: scale(1.24); transform-origin: 40% 40%;",
         alt: "Лейла"
       },
       alan: {
@@ -834,8 +927,9 @@
         role: "разводчик яков",
         lives: "Чем живет:",
         bio: "В высокогорном селе Дунта восстанавливает популяцию яков, когда-то полностью истреблённых в Осетии. А сам шутит, что просто поменял «стальных яков на живых».",
-        front: "assets/popup_alan_front_portrait.jpg",
-        back: "assets/popup_alan_back_portrait.jpg",
+        front: "assets/popup_alan_front.jpg",
+        back: "assets/popup_alan_back.jpg",
+        frontStyle: "object-position: center 20%;",
         alt: "Алан"
       },
       zaur: {
@@ -843,8 +937,9 @@
         role: "фотограф, художник",
         lives: "Чем живет:",
         bio: "Снимал Тарантино, Миккельсена и Касселя, но снова и снова возвращает объектив к жителям осетинских гор — людям, в которых хочется вглядеться.",
-        front: "assets/popup_zaur_front_portrait.jpg",
-        back: "assets/popup_zaur_back_portrait.jpg",
+        front: "assets/popup_zaur_front.jpg",
+        back: "assets/popup_zaur_back.jpg",
+        frontStyle: "object-position: 55% 30%;",
         alt: "Заур"
       },
       mahkond: {
@@ -852,8 +947,9 @@
         role: "объединение мастеров",
         lives: "Чем живут:",
         bio: "Создают арт-объекты среди осетинских гор, соединяя современное искусство с местным ландшафтом и культурой.",
-        front: "assets/popup_mahkond_front_portrait.jpg",
-        back: "assets/popup_mahkond_back_portrait.jpg",
+        front: "assets/popup_mahkond_front.jpg",
+        back: "assets/popup_mahkond_back.jpg",
+        frontStyle: "object-position: 60% 35%;",
         alt: "Mah Kond"
       }
     };
@@ -872,8 +968,10 @@
       const back = document.getElementById("modal-back");
       front.src = h.front;
       front.alt = h.alt;
+      front.style.cssText = h.frontStyle || "";
       back.src = h.back;
       back.alt = "";
+      back.style.cssText = "";
       modal.hidden = false;
       modal.classList.add("is-open");
       document.body.classList.add("is-locked");
@@ -898,7 +996,7 @@
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeHero();
     });
 
-    // Trailer on panorama (preview image + play)
+    // Trailer on panorama
     const trailer = document.getElementById("trailer");
     const playBtn = trailer && trailer.querySelector(".panorama__play");
     const videoFrame = trailer && trailer.querySelector(".panorama__video");
