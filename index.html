@@ -223,13 +223,6 @@
 
     .hero-logo { max-width: min(420px, 80vw); width: 100%; height: auto; }
 
-    .hero-kicker {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
 
     .hero-h1 {
       font-family: var(--display);
@@ -250,109 +243,9 @@
 
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ─── ABOUT (deck statement) ─── */
-    #about.section {
-      position: relative;
-      padding: clamp(48px, 7vw, 88px) var(--mx);
-      overflow: hidden;
-    }
-
-    .about-wrap {
-      position: relative;
-      max-width: 920px;
-    }
-
-    .about-watermark {
-      position: absolute;
-      right: -24px;
-      top: 28%;
-      transform: translateY(-50%);
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: clamp(140px, 22vw, 260px);
-      line-height: 0.8;
-      letter-spacing: -0.06em;
-      color: rgba(249, 116, 190, 0.07);
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-    }
-
-    .about-h1 {
-      position: relative;
-      z-index: 1;
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: clamp(24px, 3vw, 36px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    .about-rule {
-      position: relative;
-      z-index: 1;
-      height: 2px;
-      max-width: 720px;
-      background: linear-gradient(90deg, var(--accent), rgba(249,116,190,0.15) 55%, transparent);
-      margin-bottom: 28px;
-    }
-
-    .about-rule::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 8px;
-      height: 8px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(249, 116, 190, 0.14);
-    }
-
-    .about-body {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      padding-left: 22px;
-      border-left: 3px solid rgba(249, 116, 190, 0.55);
-    }
-
-    .about-body::before,
-    .about-body::after {
-      content: "";
-      position: absolute;
-      left: -1px;
-      width: 18px;
-      height: 2px;
-      background: rgba(249, 116, 190, 0.55);
-    }
-
-    .about-body::before { top: -4px; }
-    .about-body::after { bottom: -4px; }
-
-    .about-lead {
-      font-family: var(--display);
-      font-weight: 500;
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.4;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin: 0 0 20px;
-    }
-
-    .about-text {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(15px, 1.6vw, 18px);
-      line-height: 1.5;
-      letter-spacing: -0.01em;
-      color: rgba(17, 17, 17, 0.82);
-      margin: 0;
-    }
-
     /* ─── STUDIOS ─── */
+    #about { scroll-margin-top: 100px; }
+
     .studios-lead {
       font-family: var(--display);
       font-weight: 700;
@@ -954,10 +847,8 @@
     <nav class="nav" aria-label="Навигация">
       <a href="#about">О группе</a>
       <a href="#studios">Студии</a>
-      <a href="#powers">Суперсила</a>
       <a href="#work">Работы</a>
-      <a href="event/" data-ym-goal="nav_event">Event</a>
-      <a href="cinema/" data-ym-goal="nav_cinema">Cinema</a>
+      <a href="#powers">Суперсила</a>
       <a href="#contact">Контакты</a>
     </nav>
     <a class="btn btn--accent site-header__cta" href="#contact" data-ym-goal="cta_discuss">Обсудить проект</a>
@@ -970,7 +861,6 @@
           <img class="hero-logo" src="_assets/cult_group_logo.png" alt="Cult Group"/>
         </div>
         <div>
-          <p class="hero-kicker">Production · 2026</p>
           <h1 class="hero-h1">Объединение<br/>технологичных продакшнов</h1>
           <p class="hero-lead">Делаем работу над контентом эффективной. Cult, Blaster и Sputnik — в одном месте.</p>
           <div class="hero-actions">
@@ -981,94 +871,40 @@
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="inner">
-        <div class="about-wrap">
-          <div class="about-watermark" aria-hidden="true">/</div>
-          <h2 class="about-h1">Cult Group — объединение<br/>технологичных продакшнов.</h2>
-          <div class="about-rule"></div>
-          <div class="about-body">
-            <p class="about-lead">Делаем работу над контентом эффективной.</p>
-            <p class="about-text">
-              Мы применяем AI и технологии в производстве и управлении проектами.<br/>
-              С нами вы уменьшаете расходы на продакшн, а результат получаете быстрее.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="studios">
       <div class="inner">
-        <p class="studios-lead">
-          Мы объединили три продакшна с разной специализацией,<br/>
-          чтобы клиент мог решать все свои задачи в одном месте.
+        <p class="studios-lead" id="about">
+          Три компании с разной специализацией, чтобы клиент мог решать все свои задачи в одном месте.
+          Применяем AI и технологии в производстве и управлении проектами, чтобы вы уменьшили расходы на продакшн, а результат получали быстрее.
         </p>
         <div class="studios-rule"></div>
         <div class="studios-grid">
           <div class="studio-col">
             <img class="studio-logo" src="_assets/cult_logo.png" alt="Cult"/>
             <p class="studio-body">
-              <strong>Cult</strong> — <strong>гибридный рекламный продакшн</strong>:<br/>
-              от масштабных ТВ-роликов и съёмок в других странах до сложных ИИ-проектов,<br/>
-              от фото-кампейнов до имиджевых видео.
+              <strong>Cult</strong> — <strong>рекламный продакшн с фокусом на AI</strong><br/>
+              Используем 10-летний опыт в видеопроизводстве для создания роликов в AI.
+              ТВ-ролики и диджитал-видео, целиком в AI или соединяем генерацию со съёмкой.
             </p>
             <a class="btn" href="https://cult.team" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"cult"}'>cult.team →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/blaster_logo.png" alt="Blaster"/>
             <p class="studio-body">
-              <strong>Blaster</strong> — <strong>студия компьютерной графики</strong>,<br/>
-              ИИ-роликов, анимации и мультипликации.<br/>
-              Их суперсила — совмещение качественного артдирекшна и современных технологий.
+              <strong>Blaster</strong> — <strong>AI студия графики и анимации</strong><br/>
+              ИИ-ролики, анимация и мультипликация с качественным артдирекшеном.<br/>
+              Специализируемся на совмещении AI и классических CG-технологий.
             </p>
             <a class="btn" href="https://blasterstudio.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"blaster"}'>blasterstudio.ru →</a>
           </div>
           <div class="studio-col">
             <img class="studio-logo" src="_assets/sputnik_logo_ink.png" alt="Sputnik"/>
             <p class="studio-body">
-              <strong>Sputnik</strong> — <strong>продакшн документального кино</strong>, спецпроектов и брендированного
-              контента.<br/>
-              Их фильмы выходят в широкий кинопрокат и собирают награды на фестивалях,
+              <strong>Sputnik</strong> — <strong>продакшн документального кино</strong>, спецпроектов и брендированного контента.<br/>
+              Фильмы выходят в широкий прокат и получают награды на фестивалях,
               а проекты для брендов собирают миллионы просмотров.
             </p>
             <a class="btn" href="https://sputnikfilms.ru" target="_blank" rel="noopener" data-ym-goal="studio_out" data-ym-params='{"studio":"sputnik"}'>sputnikfilms.ru →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section powers-a" id="powers">
-      <div class="inner">
-        <h2 class="powers-h1">Наша суперсила</h2>
-        <div class="powers-rule"></div>
-        <div class="powers-stack">
-          <div class="power-row">
-            <p class="power-num">01</p>
-            <h3 class="power-title">AI-native<br/>команда</h3>
-            <p class="power-text">
-              Каждый сотрудник использует нейросети.<br/>
-              Это ускоряет производство и позволяет команде<br/>
-              уделять больше внимания сервису, а не&nbsp;рутине.
-            </p>
-          </div>
-          <div class="power-row">
-            <p class="power-num">02</p>
-            <h3 class="power-title">Собственные<br/>сервисы</h3>
-            <p class="power-text">
-              Наши внутренние IT-продукты для управления проектами<br/>
-              гарантируют дополнительную надежность и сокращают&nbsp;ошибки.<br/>
-              Их используют креативная индустрия, другие продакшены и&nbsp;агентства.
-            </p>
-          </div>
-          <div class="power-row">
-            <p class="power-num">03</p>
-            <h3 class="power-title">Штатные<br/>ИИ-специалисты</h3>
-            <p class="power-text">
-              В каждой студии работают опытные AI-дженералисты.<br/>
-              Мы всегда знаем, где сэкономить бюджет с помощью&nbsp;ИИ,<br/>
-              а где нужны классические инструменты.
-            </p>
           </div>
         </div>
       </div>
@@ -1364,6 +1200,42 @@
         </button>
       </div>
     </section>
+      </div>
+    </section>
+
+    <section class="section powers-a" id="powers">
+      <div class="inner">
+        <h2 class="powers-h1">Наша суперсила</h2>
+        <div class="powers-rule"></div>
+        <div class="powers-stack">
+          <div class="power-row">
+            <p class="power-num">01</p>
+            <h3 class="power-title">AI-native<br/>команда</h3>
+            <p class="power-text">
+              Каждый сотрудник использует нейросети.<br/>
+              Это ускоряет производство и позволяет команде<br/>
+              уделять больше внимания сервису, а не&nbsp;рутине.
+            </p>
+          </div>
+          <div class="power-row">
+            <p class="power-num">02</p>
+            <h3 class="power-title">Собственные<br/>сервисы</h3>
+            <p class="power-text">
+              Наши внутренние IT-продукты для управления проектами<br/>
+              гарантируют дополнительную надежность и сокращают&nbsp;ошибки.<br/>
+              Их используют креативная индустрия, другие продакшены и&nbsp;агентства.
+            </p>
+          </div>
+          <div class="power-row">
+            <p class="power-num">03</p>
+            <h3 class="power-title">Штатные<br/>ИИ-специалисты</h3>
+            <p class="power-text">
+              В каждой студии работают опытные AI-дженералисты.<br/>
+              Мы всегда знаем, где сэкономить бюджет с помощью&nbsp;ИИ,<br/>
+              а где нужны классические инструменты.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
